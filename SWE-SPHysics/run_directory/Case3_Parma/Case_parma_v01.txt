@@ -1,0 +1,224 @@
+0                       Choose Starting options:  0=new, 1=restart
+0                       debug activated: 1 - for yes (output at every timestep) 0 for no
+1000.                   fluid density (1000 kg/m3 for water)
+2                       stabilization term 1 - artificial viscosity, 2 - Lax Friedrichs flux, 3 - two shocks Riemann solver
+2.                      valule of alpha (useful just for artificial viscosity)
+0.001                   minimum depth for the friction source term
+1                       0 - No MUSCL reconstruction, 1 - MUSCL reconstruction
+1.E-3                   tolerance in the Newton - Raphson algorithm (suggested 1.E-3)
+1                       number of time steps for Newton - Raphson iterative procedure (suggested 10)
+50                      maximum number of iterations in the Newton - Raphson iterative procedure
+1                       variable time step: 1 for yes, 2 for no
+10.                     time step, or maximum time step if variable time step activated
+0.4                     Courant number
+0.1                     output interval (seconds)
+5.01                    End of the simulation (seconds)
+0.                      time step for intitial output (seconds)
+1.2                     smoothing length coefficient: h=dx*coef (suggested 1.2)
+2.60                    x length of the domain (m)
+1.20                    y - length of the domain (m)
+0.015                   x size of the regular grid for output
+0.015                   y size of the regular grid for output
+0                       open boundaries: 1 for yes, 0 for no
+
+1                       closed boundaries: 1 for yes, 0 for no
+1                       do you want to add a straight closed boundary? 1 for yes
+0.                      starting point x - coord (m)
+0.                      starting point y - coord (m)
+1                       marker starting point
+0.8                     endpoint x - coord (m)
+0.                      endpoint y - coord (m)
+1                       marker endpoint point
+0.0075                    distance between virtual particles (sugg. 0.5 dx)
+0.                      unit vector pointing inside the domain, x coord
+1.                      unit vector pointing inside the domain, y coord
+
+1                       do you want to add another closed boundary? 1 for yes 0 for no
+0.825                   starting point x - coord (m)
+0.                      starting point y - coord (m)
+1                       marker starting point
+2.60                    endpoint x - coord (m)
+0.                      endpoint y - coord (m)
+1                       marker endpoint point
+0.0075                   distance between virtual particles (sugg. 0.5 dx)
+0.                      unit vector pointing inside the domain, x coord
+1.                      unit vector pointing inside the domain, y coord
+
+1                       do you want to add another closed boundary? 1 for yes 0 for no
+2.60                    starting point x - coord (m)
+0.                      starting point y - coord (m)
+1                       marker starting point
+2.60                    endpoint x - coord (m)
+1.20                    endpoint y - coord (m)
+1                       marker endpoint point
+0.0075                  distance between virtual particles (sugg. 0.5 dx)
+-1.                     unit vector pointing inside the domain, x coord
+0.                      unit vector pointing inside the domain, y coord
+
+1                       do you want to add another closed boundary? 1 for yes 0 for no
+2.60                    starting point x - coord (m)
+1.20                    starting point y - coord (m)
+1                       marker starting point
+0.825                   endpoint x - coord (m)
+1.20                    endpoint y - coord (m)
+1                       marker endpoint point
+0.0075                   distance between virtual particles (sugg. 0.5 dx)
+0.                      unit vector pointing inside the domain, x coord
+-1.                     unit vector pointing inside the domain, y coord
+
+1                       do you want to add another closed boundary? 1 for yes 0 for no
+0.8                     starting point x - coord (m)
+1.20                    starting point y - coord (m)
+1                       marker starting point
+0.                      endpoint x - coord (m)
+1.20                    endpoint y - coord (m)
+1                       marker endpoint point
+0.0075                  distance between virtual particles (sugg. 0.5 dx)
+0.                      unit vector pointing inside the domain, x coord
+-1.                     unit vector pointing inside the domain, y coord
+
+1                       do you want to add another closed boundary? 1 for yes 0 for no
+0.                      starting point x - coord (m)
+1.20                    starting point y - coord (m)
+1                       marker starting point
+0.                      endpoint x - coord (m)
+0.                      endpoint y - coord (m)
+1                       marker endpoint point
+0.0075                  distance between virtual particles (sugg. 0.5 dx)
+1.                      unit vector pointing inside the domain, x coord
+0.                      unit vector pointing inside the domain, y coord
+
+1                       do you want to add another closed boundary? 1 for yes 0 for no
+0.8                     starting point x - coord (m)
+0.                      starting point y - coord (m)
+1                       marker starting point
+0.8                     endpoint x - coord (m)
+0.45                    endpoint y - coord (m)
+0                       marker endpoint point
+0.0075                  distance between virtual particles (sugg. 0.5 dx)
+-1.                      unit vector pointing inside the domain, x coord
+0.                      unit vector pointing inside the domain, y coord
+
+1                       do you want to add another closed boundary? 1 for yes 0 for no
+0.8                     starting point x - coord (m)
+0.75                    starting point y - coord (m)
+0                       marker starting point
+0.8                     endpoint x - coord (m)
+1.2                     endpoint y - coord (m)
+1                       marker endpoint point
+0.0075                  distance between virtual particles (sugg. 0.5 dx)
+-1.                      unit vector pointing inside the domain, x coord
+0.                      unit vector pointing inside the domain, y coord
+
+1                       do you want to add another closed boundary? 1 for yes 0 for no
+0.825                     starting point x - coord (m)
+0.75                    starting point y - coord (m)
+0                       marker starting point
+0.825                     endpoint x - coord (m)
+1.2                     endpoint y - coord (m)
+1                       marker endpoint point
+0.0075                   distance between virtual particles (sugg. 0.5 dx)
++1.                      unit vector pointing inside the domain, x coord
+0.                      unit vector pointing inside the domain, y coord
+
+1                       do you want to add another closed boundary? 1 for yes 0 for no
+0.825                     starting point x - coord (m)
+0.                      starting point y - coord (m)
+1                       marker starting point
+0.825                     endpoint x - coord (m)
+0.45                    endpoint y - coord (m)
+0                       marker endpoint point
+0.0075                  distance between virtual particles (sugg. 0.5 dx)
+1.                      unit vector pointing inside the domain, x coord
+0.                      unit vector pointing inside the domain, y coord
+
+1                       do you want to add another closed boundary? 1 for yes 0 for no
+0.8                     starting point x - coord (m)
+0.45                     starting point y - coord (m)
+0                       marker starting point
+0.825                   endpoint x - coord (m)
+0.45                    endpoint y - coord (m)
+0                       marker endpoint point
+0.0075                  distance between virtual particles (sugg. 0.5 dx)
+0.                      unit vector pointing inside the domain, x coord
+1.                      unit vector pointing inside the domain, y coord
+
+1                       do you want to add another closed boundary? 1 for yes 0 for no
+0.8                     starting point x - coord (m)
+0.75                    starting point y - coord (m)
+0                       marker starting point
+0.825                   endpoint x - coord (m)
+0.75                    endpoint y - coord (m)
+0                       marker endpoint point
+0.0075                  distance between virtual particles (sugg. 0.5 dx)
+0.                      unit vector pointing inside the domain, x coord
+-1.                     unit vector pointing inside the domain, y coord
+
+0                       do you want to add another closed boundary? 1 for yes 0 for no
+0                       do you want to add a circular closed boundary 0 for no
+
+1                       Choose Bed Profile 1 = flat bed in blocks 
+0.                      initial position of the block, x - coord
+0.                      initial position of the block, y - coord
+2.60                    length of the block
+1.20                    heigth of the block
+0.015                   bottom particle spacing
+1.2                     coefficient for the smoothing length (sugg. 1.2)
+0.007                   manning coefficient of the block
+0.                      constant elevation of the block
+0                       do you want to add another block 1 for yes
+
+1                       Choose fluid particle distribution 1 = square blocks
+0.                      initial position of the block, x - coord
+0.                      initial position of the block, y - coord
+0.8                     length of the block
+1.2                     heigth of the block
+0.15                    water surface elevation at South - West (m)
+0.15                    water surface elevation at South - East (m)
+0.15                    water surface elevation at North - West (m)
+0.15                    water surface elevation at North - East (m)
+0.                      x - velocity component at South - West (m)
+0.                      x - velocity component at South - East (m)
+0.                      x - velocity component at North - West (m)
+0.                      x - velocity component at North - East (m)
+0.                      y - velocity component at South - West (m)0.7975
+0.                      y - velocity component at South - East (m)
+0.                      y - velocity component at North - West (m)
+0.                      y - velocity component at North - East (m)
+0.015                   particle spacing for this block (m)
+0                       Add another block (1=yes)
+
+1                       refinement procedure 1 for yes 0 for no
+0.4                     eta coefficient for refined particle, distance  (suggested 0.4)
+0.9                     alpha coefficient for refined particle, smoothing length  (suggested 0.9)
+0.005                   size of the grid for refinement along x direction (m)
+0.005                   size of the grid for refinement along y direction (m)
+0.0001                  minimum water depth for splitting (m)
+0.7                     x_min_ref_lim (m)
+0.4535                  y_min_ref_lim (m)
+0.8                     x_max_ref_lim (m)
+0.7465                  y_max_ref_lim (m)
+0.9                     Ratio of initial (max Area before splitting)/(Area) before splitting
+1                       Add another block for refinement(1=yes)
+
+0.7                     x_min_ref_lim (m)
+0.35                    y_min_ref_lim (m)
+0.79                    x_max_ref_lim (m)
+0.4530                  y_max_ref_lim (m)
+0.9                     Ratio of initial (max Area before splitting)/(Area) before splitting
+1                       Add another block for refinement(1=yes)
+
+0.7                     x_min_ref_lim (m)
+0.7430                  y_min_ref_lim (m)
+0.79                    x_max_ref_lim (m)
+0.85                    y_max_ref_lim (m)
+0.9                     Ratio of initial (max Area before splitting)/(Area) before splitting
+0                       Add another block for refinement(1=yes)
+
+1                       Which compiler is desired? (1=gfortran, 2=ifort, 3=win_ifort, 4=Silverfrost FTN95)
+1                       1 for single precision, 2 for double precision
+
+
+
+
+
