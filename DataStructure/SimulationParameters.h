@@ -1,12 +1,14 @@
 #ifndef SIMULATIONPARAMETERS_H
 #define SIMULATIONPARAMETERS_H
 
+#include <boost/property_tree/ptree.hpp>
+
 class SimulationParameters
 {
 public:
 	SimulationParameters();
 	~SimulationParameters();
-
+	
 
 
 	struct Physical {
@@ -14,14 +16,14 @@ public:
 		double rho0;		//density of fluid
 		double viscos_val; 	//viscosity of fluid
 		double vlx, vly; 	//domain extent in x, y
-	} physical;
+	};
 	
 	struct Output {
 		double trec_ini;	//time of first output
 		double out;			//output time interval
 		double dx, dy;		//grid sizes for interpolated values on output grid
 		int idebug;			//detailed output every timestep (1=y)
-	} output;
+	};
 	
 	struct Simulation {
 		struct Time {
@@ -34,7 +36,7 @@ public:
 			int npv;		//initial no of virtual particles
 			int np_b;		//initial no of bed particles			
 		} initialParticles;
-		struct 
+		
 		struct Refinement {
 			double coef; 	//coefficient of init smoothing length to dx
 			double hsm_b_max;//smoothlength max for bottom particles
@@ -61,7 +63,9 @@ public:
 			double CFL; 	//courant number, related to max dt/dx ratio for convergence of method (also see wikipedia)
 			
 			int i_restartrun; //restart an old run (1=yes)
-		}
+		};		
+	
+
 		
 	} simulation;
 };

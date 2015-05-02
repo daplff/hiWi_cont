@@ -10,7 +10,6 @@ public:
 	~DomainVariables();
 
 		struct Bottom {
-			int npar_b;
 			ParticlesStructure particles;
 		} bottom;
 		
@@ -21,7 +20,7 @@ public:
 		struct Fluid {
 			int npar;
 			ParticlesStructure particles;
-		}
+		} fluid;
 };
 
 #endif // DOMAINVARIABLES_H
