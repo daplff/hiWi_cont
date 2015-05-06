@@ -1,0 +1,29 @@
+--- QUICKSTART GUIDE TO PLOTTING SPHYSICS RESULTS ---
+
+(All plotting codes for SPHYSICS are distributed under the terms of Free Berkeley Software Distribution, FreeBSD, as published by the Open Source Initiative, http://opensource.org/licenses/BSD-2-Clause)
+
+This directory contains the Matlab routines for visualizing SWE-SPHYSICS results using Matlab.
+
+Given below is a brief description of the files:
+
+1) SPHYSICS_SWE_2D_Plot.m:
+   This is the main program that needs to be executed to visualize the results in Matlab. This loads the input files DT, sets the figure properties. 
+
+2) grd_read_v2.m (called by SPHYSICS_SWE_2D_Plot.m) load the .GRD files created by the SPHYSICS_SWE_2D code.
+
+PROGRAM LOCATION:
+
+These programs search for the input files DT, the PART_ijkl, the GRD_dijkl the GRD_uijkl and the the GRD_vijkl files in the current matlab working directory. Hence, these *.m files should either:
+
+1) be copied to the run_directory/CaseN directory where the input files DT, maltabin and the PART_ijkl files are located, or
+
+2) be left under Post-Processing/matlabRoutines/ and have their location added to Matlab's default search path (search www.mathworks.com for more info).
+
+
+PROGRAM EXECUTION:
+
+To run these plotting routines, first change directory to run_directory/CaseN.
+
+1) Plotting in Matlab
+At the command prompt in matlab, enter:
+SPHYSICS_SWE_2D_Plot
