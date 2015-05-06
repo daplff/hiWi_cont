@@ -1,0 +1,42 @@
+mixed code document
+
+
+!in global_2d module
+!...
+
+real xp(np)
+
+!...
+
+! in fortran main code:
+
+integer data_status
+
+
+!...
+
+data_status = init_data()
+if (status.neq.0)
+	call initialize_xp(xp, np)
+end if
+
+!...
+
+!end fortran code
+
+
+
+//in C++ file
+
+extern "C" {
+
+int * init_data_ ();
+void initialize_xp_(float * array, int * len);
+
+}
+
+//...
+
+void 
+
+
