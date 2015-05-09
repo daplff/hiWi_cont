@@ -1,7 +1,7 @@
 *~
 *.o
-SPHYSICS_SWE_2D
-SPHYSICS_SWE_gen_2D
+SWE-SPHysics/execs/*
+SWE-SPHysics/execs.bak/*
 PART*
 GRD*
 DT
