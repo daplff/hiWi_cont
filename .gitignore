@@ -2,3 +2,14 @@
 *.o
 SPHYSICS_SWE_2D
 SPHYSICS_SWE_gen_2D
+PART*
+GRD*
+DT
+ibottom
+indat
+ipart
+ipartv
+matlabin
+open_bc
+restart
+
