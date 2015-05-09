@@ -4,7 +4,7 @@ mixed code document
 !in global_2d module
 !...
 
-real xp(np)
+real xp(np) !already present
 
 !...
 
@@ -16,8 +16,10 @@ integer data_status
 !...
 
 data_status = init_data()
-if (status.neq.0)
+if (data_status.neq.0) then
 	call initialize_xp(xp, np)
+else
+	stop
 end if
 
 !...
@@ -26,8 +28,8 @@ end if
 
 
 
-//in C++ file
-
+//in C++ header
+//interfacing to fortran
 extern "C" {
 
 int * init_data_ ();
@@ -37,6 +39,55 @@ void initialize_xp_(float * array, int * len);
 
 //...
 
-void 
 
 
+int * init_data_()
+{
+	static DataStructure dataStructure(/*possible parameters?*/);
+	
+	return dataStructure.getReadyStatus_ptr();
+}
+
+
+void initialize_xp_(float * array, int * len){
+	
+	std::vector<float>& init_xp = dataStructure.get_xp();
+	
+	//alternatively use a for loop
+	std::copy(init_xp.begin(), init_xp.begin() + *len, array);
+}
+
+class DataStructure {
+	
+	public:
+	const std::vector<double>& get_xp();
+	int * getReadyStatus_ptr();
+
+	~DataStructure(){}
+
+
+	private:
+	//private so that it will always be initialized properly, if there should be arguments in the init function etc
+	//so that static object won't be accessed before it is constructed 
+	//(optional)
+	DataStructure(/*possible input values/location of sources here*/);
+	std::vector<float> xp;
+	int ready_status;
+
+	friend int * init_data_();
+};
+
+
+//implementation file 
+/*put in implementation file for flexibility*/
+	
+const std::vector<double>& DataStructure::get_xp(){return xp;}
+int * DataStructure::getReadyStatus_ptr(){return &ready_status;}
+DataStructure::DataStructure(/*possible input values/location of sources here*/ )
+	:ready_status(0)
+	{ 
+	/* initialize for example from a boost property tree or other */
+	
+	//at end, if everything goes to plan:
+	ready_status = 1;
+	}
