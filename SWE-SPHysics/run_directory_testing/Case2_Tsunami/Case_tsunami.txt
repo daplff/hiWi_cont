@@ -1,0 +1,108 @@
+0                       Choose Starting options:  0=new, 1=restart
+0                       debug activated: 1 - for yes (output at every timestep) 0 for no
+1000.                   fluid density (1000 kg/m3 for water)
+2                       stabilization term 1 - artificial viscosity, 2 - Lax Friedrichs flux, 3 - two shocks Riemann solver
+2.                      valule of alpha (useful just for artificial viscosity)
+0.001                   minimum depth for the friction source term
+1                       0 - No MUSCL reconstruction, 1 - MUSCL reconstruction
+1.E-3                   tolerance in the Newton - Raphson algorithm (suggested 1.E-3)
+1                       number of time steps for Newton - Raphson iterative procedure (suggested 10)
+50                      maximum number of iterations in the Newton - Raphson iterative procedure
+1                       variable time step: 1 for yes, 2 for no
+10.                     time step, or maximum time step if variable time step activated
+0.4                     Courant number
+0.2                     output interval (seconds)
+22.51                   End of the simulation (seconds)
+0.                      time step for intitial output (seconds)
+1.2                     smoothing length coefficient: h=dx*coef (suggested 1.2)
+5.448                   x length of the domain (m)
+3.402                   y - length of the domain (m)
+0.01                    x size of the regular grid for output
+0.01                    y size of the regular grid for output
+
+1                       open boundaries: 1 for yes, 0 for no
+0.009375                minimum distance between particles in the buffer zone (m)
+1                       number of boundary conditions
+3                       kind of open boundary condition: 2 for inflow, 3 for outflow 
+0.                      x-coordinate for the beginning of the openbc (m) 
+0.                      y-coordinate for the beginning of the openbc (m)
+3.402                   length of the bc (m)
+1.                      x - coord of the unit vector normal to the bc
+0.                      y - coord of the unit vector normal to the bc
+1.                      1 if z is exiting from the plane x-y, -1 if it is entering in the plane x-y
+0.01875                  dx for open boundary particles (m)
+1                       steady bc 0 for yes, 1 for no
+tsunami_obc             filename with open boundaries
+
+1                       closed boundaries: 1 for yes, 0 for no
+1                       do you want to add a straight closed boundary? 1 for yes
+0.                      starting point x - coord (m)
+0.                      starting point y - coord (m)
+1                       marker starting point
+5.448                   endpoint x - coord (m)
+0.                      endpoint y - coord (m)
+1                       marker endpoint point
+0.009375                distance between virtual particles (sugg. 0.5 dx)
+0.                      unit vector pointing inside the domain, x coord
+1.                      unit vector pointing inside the domain, y coord
+
+1                       closed boundaries: 1 for yes, 0 for no
+0.                      starting point x - coord (m)
+3.402                   starting point y - coord (m)
+1                       marker starting point
+5.448                   endpoint x - coord (m)
+3.402                   endpoint y - coord (m)
+1                       marker endpoint point
+0.009375               distance between virtual particles (sugg. 0.5 dx)
+0.                      unit vector pointing inside the domain, x coord
+-1.                     unit vector pointing inside the domain, y coord
+
+1                       closed boundaries: 1 for yes, 0 for no
+5.448                   starting point x - coord (m)
+0.                      starting point y - coord (m)
+1                       marker starting point
+5.448                   endpoint x - coord (m)
+3.402                   endpoint y - coord (m)
+1                       marker endpoint point
+0.009375               distance between virtual particles (sugg. 0.5 dx)
+-1.                     unit vector pointing inside the domain, x coord
+0.                      unit vector pointing inside the domain, y coord
+
+0                       do you want to add another closed boundary? 1 for yes 0 for no
+0                       do you want to add a circular closed boundary 0 for no
+
+3                       Choose Bed Profile 3 = Load Bed Profile from File
+tsunami_bed             Enter filename of Bed Profile
+
+1                       Choose fluid particle distribution 1 = square blocks
+0.                      initial position of the block, x - coord
+0.                      initial position of the block, y - coord
+5.448                   length of the block
+3.402                   heigth of the block
+.13535                  water surface elevation at South - West (m)
+.13535                  water surface elevation at South - East (m)
+.13535                  water surface elevation at North - West (m)
+.13535                  water surface elevation at North - East (m)
+0.                      x - velocity component at South - West (m)
+0.                      x - velocity component at South - East (m)
+0.                      x - velocity component at North - West (m)
+0.                      x - velocity component at North - East (m)
+0.                      y - velocity component at South - West (m)
+0.                      y - velocity component at South - East (m)
+0.                      y - velocity component at North - West (m)
+0.                      y - velocity component at North - East (m)
+0.01875                 particle spacing for this block (m)
+0                       Add another block (1=yes)
+
+0                       refinement procedure 1 for yes 0 for no
+0.02                    size of the grid for refinement along x direction (m)
+0.02                    size of the grid for refinement along y direction (m)
+0.001                   minimum water depth for splitting (m)
+
+1                       Which compiler is desired? (1=gfortran, 2=ifort, 3=win_ifort, 4=Silverfrost FTN95)
+1                       1 for single precision, 2 for double precision
+
+
+
+
+
