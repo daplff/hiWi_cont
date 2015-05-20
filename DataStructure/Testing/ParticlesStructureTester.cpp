@@ -28,7 +28,7 @@ void ParticlesStructureTester::test()
 		
 		std::cout<<"going to output, press enter";
 		std::string temp;
-		std::getline(std::cin,temp);
+		std::getline(std::cin,onenotetemp);
 		
 		for (auto it = tester.getXposArray().begin(); it!=tester.getXposArray().end(); it++ )
 			std::cout<< " " << *it;

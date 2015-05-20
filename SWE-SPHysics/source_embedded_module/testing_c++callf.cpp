@@ -5,7 +5,7 @@
  *      Author: wannerbe
  */
 
-#include<iostream>
+#include <iostream>
 
 extern "C" {
 	void sph_init_();
