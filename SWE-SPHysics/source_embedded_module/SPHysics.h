@@ -12,7 +12,8 @@ public:
 	void runTimestep(ParticlesStructure& particles);
 	SPHysics();
 	~SPHysics();
-
+	void set_variables(ParticlesStructure& particles);
+	void get_variables(ParticlesStructure& particles);
 };
 
 #endif // SPHYSICS_H

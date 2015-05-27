@@ -12,6 +12,7 @@ extern "C" {
 	void sph_loopstep_();
 	void get_time_(float * time);
 	void set_t_end_(float * time);
+	void sph_output_();
 
 }
 
@@ -31,10 +32,12 @@ int main(int argc, char * argv [])
 	get_time_(&time_fortran);
 	while(time_fortran < time_end)
 	{
+		std::cout << "t = " << time_fortran << "\n";
 		sph_loopstep_();
 		get_time_(&time_fortran);
 
-		std::cout << "t = " << time_fortran << "\n";
+
+		sph_output_();
 	}
 
 	std::cout << "done " <<std::endl;

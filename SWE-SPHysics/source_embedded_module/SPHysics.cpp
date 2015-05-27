@@ -3,6 +3,7 @@ extern "C"
 {
 	void sph_init_();
 	void sph_loopstep_();
+	void global
 }
 
 SPHysics::SPHysics()
