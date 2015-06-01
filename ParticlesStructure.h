@@ -11,7 +11,7 @@ public:
     ~ParticlesStructure();
     ParticlesStructure(const boost::property_tree::ptree& input);
 
-    const std::vector<double>& getXposArray() const
+    std::vector<double>& getXposArray()
     {
 	return xposArray;
     }
