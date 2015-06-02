@@ -5,42 +5,41 @@
  *      Author: wannerbe
  */
 
+
+#include "SPHysics.h"
+#include <vector>
 #include <iostream>
+#include "../../ParticlesStructure.h"
 
-extern "C" {
-	void sph_init_();
-	void sph_loopstep_();
-	void get_time_(float * time);
-	void set_t_end_(float * time);
-	void sph_output_();
+void print_vector(std::vector<double> input, int step){
 
+	for(int i=0;i<input.size(); i+= step)
+	{
+		std::cout<<input[i] << "\t";
+	}
 }
 
 
-
+class Parameters{};
 
 
 
 int main(int argc, char * argv [])
 {
-	sph_init_();
 
-	float time_fortran = 0.0;
-	float time_end = 50.0;
-	set_t_end_(&time_end);
-
-	get_time_(&time_fortran);
-	while(time_fortran < time_end)
-	{
-		std::cout << "t = " << time_fortran << "\n";
-		sph_loopstep_();
-		get_time_(&time_fortran);
+	Parameters parameters;
+	ParticlesStructure particles;
+	SPHysics sphysics;
+	sphysics.initialize(parameters);
+	sphysics.get_variables(particles);
 
 
-		sph_output_();
-	}
+	print_vector(particles.getXposArray(), 100);
+	sphysics.runTimestep(particles);
 
-	std::cout << "done " <<std::endl;
+	print_vector(particles.getXposArray(), 100);
+
+
 
 
 	return 0;
