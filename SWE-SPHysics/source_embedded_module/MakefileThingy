@@ -3,10 +3,13 @@ OPTIONS= -O3
 srcdir=.
 idir=../../execs
 bakdir=../../execs.bak
+libraries=-lstdc++
+objects_new=fortran_interact.cpp.o SPH_init.o SPH_loopstep.o get_time.o	set_t_end.o ../testing_c++callf.cpp.o
 
-objects=  global_2D.o   \
+objects_cpp=../testing_c++callf.cpp.o
+
+objects_solver=global_2D.o   \
 	ini_divide_2D.o   \
-	SPHYSICS_SWE_2D.o   \
 	getdata_2D.o   \
 	check_limits_2D.o   \
 	poute_2D.o   \
@@ -51,10 +54,16 @@ objects=  global_2D.o   \
 	celij_corr_2D.o   \
 	self_corr_2D.o   \
 	open_bc_pos_2D.o  
+#	SPHYSICS_SWE_2D.o   \
 
+%face:
+	echo "$@face :)"
 #
-SPHYSICS_SWE_2D: $(objects)
-	$(FC) $(OPTIONS) -o SPHYSICS_SWE_2D $(objects)
+%.o: %.f
+	$(FC) $(OPTIONS) -c -o $@ $<
+#
+SPHYSICS_SWE_2D: $(objects_cpp) $(objects_new) $(objects_solver)
+	$(FC) $(OPTIONS) -o SPHYSICS_SWE_2D $(objects_cpp) $(objects_new) $(objects_solver) $(libraries)
 #
 	if [ -d $(bakdir) ]; then \
 	echo "execs.bak Directory Exists"; else \
@@ -80,5 +89,8 @@ clean:
 	rm *.o
 	rm *~
 #
-%.o: %.f
-	$(FC) $(OPTIONS) -c -o $@ $<
+
+#
+%.cpp.o: %.cpp
+	g++ -c -o $@ $<
+#

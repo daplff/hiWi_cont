@@ -10,6 +10,13 @@
 #include <vector>
 #include <iostream>
 #include "../../ParticlesStructure.h"
+#include "fortrangetset_prototypes.h"
+
+extern "C"
+{
+FORTRANGETSET(int * ,np)
+}
+
 
 void print_vector(std::vector<double> input, int step){
 
@@ -31,15 +38,34 @@ int main(int argc, char * argv [])
 	ParticlesStructure particles;
 	SPHysics sphysics;
 	sphysics.initialize(parameters);
+
+	std::vector<double>& xPosref = particles.getXposArray();
+
+	int num_particles;
+	C_GET_FROM_FORTRAN(np,& num_particles);
+	xPosref.resize(num_particles);
 	sphysics.get_variables(particles);
 
-
-	print_vector(particles.getXposArray(), 100);
-	sphysics.runTimestep(particles);
-
-	print_vector(particles.getXposArray(), 100);
+//	print_vector(xPosref,500);
+	std::cout<<"starting while loop" << std::endl;
 
 
+	double tempXpos = 0.0;
+	while (tempXpos!=-2.0)
+	{
+		std::cout << "---------------running timestep ------------------------" << std::endl;
+
+		sphysics.runTimestep(particles);
+		std::cout<< "every 10 000th particles: \t";
+		print_vector(particles.getXposArray(), 10000);
+		std::cout<< std::endl << "change xpos of first particle: (-1 for unchanged, -2 for quit loop)" << std::endl << std::endl;
+		std::cin>> tempXpos;
+		if(tempXpos!=-1.0)
+		{
+			xPosref[0]=tempXpos;
+		}
+
+	}
 
 
 	return 0;

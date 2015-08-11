@@ -3,9 +3,12 @@
 #include "FortranIO.h"
 extern "C"
 {
-	void sph_init_();
-	void sph_loopstep_();
+	void sph_init_();		  //  } fortran functions
+	void sph_loopstep_();  // | using the "old"/unsafe way of
+	void sph_output_();    // | calling fortran functions
 }
+
+//TODO:bind(c) in fortran
 
 SPHysics::SPHysics()
 {
@@ -26,7 +29,10 @@ void SPHysics::runTimestep(ParticlesStructure& particles)
 	sph_loopstep_();
 	get_variables(particles);
 }
-
+void SPHysics::simulatorOutput()
+{
+	sph_output_();
+}
 void SPHysics::set_variables(ParticlesStructure& particles) {
 	fortranIO_ptr->setRuntimeVariables(particles);
 }

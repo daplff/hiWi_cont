@@ -132,7 +132,25 @@
 
         end subroutine
 
+        subroutine get_fortran_variable_np (ctype_variable)
+     1  bind (c, name = "FORTRAN_GETTER_np")
+        use global_2d
 
+        integer(c_int) ctype_variable
+
+        ctype_variable = np
+
+        end subroutine
+
+        subroutine set_fortran_variable_np (ctype_variable)
+     1   bind (c, name = "FORTRAN_SETTER_np")
+        use global_2d
+
+        integer(c_int) ctype_variable
+
+        np = ctype_variable
+
+        end subroutine
 
       end module
 

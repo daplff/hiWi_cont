@@ -14,6 +14,7 @@ class SPHysics
 public:
 	void initialize(Parameters& parameters);
 	void runTimestep(ParticlesStructure& particles);
+	void simulatorOutput();
 	SPHysics();
 	~SPHysics();
 	void set_variables(ParticlesStructure& particles);
