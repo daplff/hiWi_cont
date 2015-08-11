@@ -152,6 +152,27 @@
 
         end subroutine
 
+        subroutine get_fortran_variable_time (ctype_variable)
+     1  bind (c, name = "FORTRAN_GETTER_time")
+        use global_2d
+
+        real(c_float) ctype_variable
+
+        ctype_variable = time
+
+        end subroutine
+
+        subroutine set_fortran_variable_time (ctype_variable)
+     1  bind (c, name = "FORTRAN_SETTER_time")
+        use global_2d
+
+        real(c_float) ctype_variable
+
+        time = ctype_variable
+
+        end subroutine
+
+
       end module
 
 

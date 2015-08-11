@@ -8,6 +8,7 @@
 class Parameters;
 class ParticlesStructure;
 class FortranIO;
+class ParticleOutputter;
 
 class SPHysics
 {
@@ -15,12 +16,15 @@ public:
 	void initialize(Parameters& parameters);
 	void runTimestep(ParticlesStructure& particles);
 	void simulatorOutput();
+	void netcdfOutput(ParticlesStructure& particles, float time);
 	SPHysics();
 	~SPHysics();
 	void set_variables(ParticlesStructure& particles);
 	void get_variables(ParticlesStructure& particles);
+
 private:
 	std::shared_ptr<FortranIO> fortranIO_ptr;
+	std::shared_ptr<ParticleOutputter> particleOutputter_ptr;
 };
 
 #endif // SPHYSICS_H

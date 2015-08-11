@@ -15,6 +15,8 @@
 extern "C"
 {
 FORTRANGETSET(int * ,np)
+
+FORTRANGETSET(float *, time)
 }
 
 
@@ -51,6 +53,7 @@ int main(int argc, char * argv [])
 
 
 	double tempXpos = 0.0;
+	float time= 0.0;
 	while (tempXpos!=-2.0)
 	{
 		std::cout << "---------------running timestep ------------------------" << std::endl;
@@ -60,6 +63,9 @@ int main(int argc, char * argv [])
 		print_vector(particles.getXposArray(), 10000);
 		std::cout<< std::endl << "change xpos of first particle: (-1 for unchanged, -2 for quit loop)" << std::endl << std::endl;
 		std::cin>> tempXpos;
+		C_GET_FROM_FORTRAN(time,& time);
+		sphysics.netcdfOutput(particles,time);
+		sphysics.simulatorOutput();
 		if(tempXpos!=-1.0)
 		{
 			xPosref[0]=tempXpos;

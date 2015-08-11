@@ -3,10 +3,14 @@ OPTIONS= -O3
 srcdir=.
 idir=../../execs
 bakdir=../../execs.bak
-libraries=-lstdc++
-objects_new=fortran_interact.cpp.o SPH_init.o SPH_loopstep.o get_time.o	set_t_end.o ../testing_c++callf.cpp.o
+libraries=-lstdc++ -lnetcdf
+#objects_new=fortran_interact.cpp.o SPH_init.o SPH_loopstep.o get_time.o	set_t_end.o  ../SPHysics.cpp.o ../c_helper_module.o ../../../ParticlesStructure.cpp.o
+#objects_cpp=../testing_c++callf.cpp.o
 
-objects_cpp=../testing_c++callf.cpp.o
+objects_new=SPH_init.o SPH_loopstep.o SPH_output.o get_time.o set_t_end.o ../c_helper_module.o 
+
+objects_cpp=../testing_c++callf.cpp.o ../FortranIO.cpp.o ../SPHysics.cpp.o ../../../ParticlesStructure.cpp.o ../ParticleOutputter.cpp.o
+
 
 objects_solver=global_2D.o   \
 	ini_divide_2D.o   \
@@ -86,11 +90,11 @@ SPHYSICS_SWE_2D: $(objects_cpp) $(objects_new) $(objects_solver)
 	echo New SPHYSICS_SWE_2D moved to execs
 #
 clean:
-	rm *.o
+	rm $(objects_new) $(objects_cpp) $(objects_solver)
 	rm *~
 #
 
 #
 %.cpp.o: %.cpp
-	g++ -c -o $@ $<
+	g++ -std=c++0x -c -o $@ $<
 #
