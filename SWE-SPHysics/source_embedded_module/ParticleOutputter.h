@@ -21,14 +21,14 @@ public:
 	bool writeToOutput(std::vector<double> xpos, float time);
 	bool writeVecToOutput(int varId, std::vector<double> toOutput);
 	bool writeTimeToOutput(float time);
-	void initialise(int no_particles, std::string fileName);
+	bool initialise(int no_particles, std::string fileName);
 	bool writeToOutput(ParticlesStructure& particlesStructure, float time);
 
 private:
 	bool fileIsOpened;
 	std::string fileName;
 
-	int ncFileId, timeDimId,partNoDimId, xposVarId, timeVarId;
+	int ncFileId, timeDimId,partNoDimId, xposVarId, yposVarId, timeVarId;
 	size_t outputTimestepCounter;
 	void handleErrorChangeStatus(std::string message);
 	void handleOutputError(std::string message);

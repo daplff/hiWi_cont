@@ -20,11 +20,18 @@ FORTRANGETSET(float *, time)
 }
 
 
-void print_vector(std::vector<double> input, int step){
-
+void print_vector(std::vector<double> input, int step)
+{
 	for(int i=0;i<input.size(); i+= step)
 	{
 		std::cout<<input[i] << "\t";
+	}
+}
+void print_vectors(std::vector<double> xInput, std::vector<double> yInput, int step)
+{
+	for(int i=0;i<xInput.size(); i+= step)
+	{
+		std::cout<<"("  << xInput[i] <<","<<yInput[i]<< ")\t";
 	}
 }
 
@@ -42,10 +49,12 @@ int main(int argc, char * argv [])
 	sphysics.initialize(parameters);
 
 	std::vector<double>& xPosref = particles.getXposArray();
+	std::vector<double>& yPosref = particles.getYposArray();
 
 	int num_particles;
 	C_GET_FROM_FORTRAN(np,& num_particles);
 	xPosref.resize(num_particles);
+	yPosref.resize(num_particles);
 	sphysics.get_variables(particles);
 
 //	print_vector(xPosref,500);
@@ -60,13 +69,13 @@ int main(int argc, char * argv [])
 
 		sphysics.runTimestep(particles);
 		std::cout<< "every 10 000th particles: \t";
-		print_vector(particles.getXposArray(), 10000);
-		std::cout<< std::endl << "change xpos of first particle: (-1 for unchanged, -2 for quit loop)" << std::endl << std::endl;
+		print_vectors(particles.getXposArray(),particles.getYposArray(), 10000);
+		std::cout<< std::endl << "change xpos of first particle: (0 for unchanged, -2 for quit loop)" << std::endl << std::endl;
 		std::cin>> tempXpos;
 		C_GET_FROM_FORTRAN(time,& time);
 		sphysics.netcdfOutput(particles,time);
 		sphysics.simulatorOutput();
-		if(tempXpos!=-1.0)
+		if(tempXpos!=0.0)
 		{
 			xPosref[0]=tempXpos;
 		}

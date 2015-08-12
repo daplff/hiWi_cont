@@ -12,9 +12,13 @@ public:
     ParticlesStructure(const boost::property_tree::ptree& input);
 
     std::vector<double>& getXposArray()
-    {
+	{
 	return xposArray;
-    }
+	}
+    std::vector<double>& getYposArray()
+	{
+	return yposArray;
+	}
 
 private:
     std::vector<double> xposArray;

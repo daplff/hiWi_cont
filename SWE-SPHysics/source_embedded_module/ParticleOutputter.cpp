@@ -57,7 +57,7 @@ bool ParticleOutputter::writeToOutput(std::vector<double> xpos, float time) {
 	return outStatus;
 }
 
-void ParticleOutputter::initialise(int no_particles, std::string fileName) {
+bool ParticleOutputter::initialise(int no_particles, std::string fileName) {
 
 
 	if(nc_create(fileName.c_str(), NC_NETCDF4, &ncFileId) != NC_NOERR)
@@ -73,7 +73,9 @@ void ParticleOutputter::initialise(int no_particles, std::string fileName) {
 
 	const int dimIdsArray [] = {timeDimId,partNoDimId};
 	if (nc_def_var(ncFileId,"xpos",NC_FLOAT,2,dimIdsArray, &xposVarId) != NC_NOERR)
-			handleErrorChangeStatus("Couldn't create xpos variable");
+				handleErrorChangeStatus("Couldn't create xpos variable");
+	if (nc_def_var(ncFileId,"ypos",NC_FLOAT,2,dimIdsArray, &yposVarId) != NC_NOERR)
+				handleErrorChangeStatus("Couldn't create ypos variable");
 	if (nc_def_var(ncFileId,"time",NC_FLOAT,1,&timeDimId, &timeVarId) != NC_NOERR)
 				handleErrorChangeStatus("Couldn't create time variable");
 
@@ -85,6 +87,7 @@ void ParticleOutputter::initialise(int no_particles, std::string fileName) {
 
 	fileIsOpened = true;
 
+	return fileIsOpened;
 }
 
 void ParticleOutputter::handleOutputError(std::string message) {
@@ -100,7 +103,7 @@ bool ParticleOutputter::writeVecToOutput(int varId,
 	size_t currentStartIndices [] = {outputTimestepCounter, 0};
 
 	size_t dimensionLengths [] = {1,toOutput.size()};
-	opStatusTemp = nc_put_vara_double(ncFileId,xposVarId,currentStartIndices,dimensionLengths,toOutput.data());
+	opStatusTemp = nc_put_vara_double(ncFileId,varId,currentStartIndices,dimensionLengths,toOutput.data());
 	if (opStatusTemp != NC_NOERR)
 	{ handleErrorOutputStatus("Couldn't write outvector",opStatusTemp); outStatus = false;}
 
@@ -125,6 +128,10 @@ bool ParticleOutputter::writeToOutput(ParticlesStructure& particlesStructure, fl
 	if(!writeVecToOutput(xposVarId,particlesStructure.getXposArray()))
 	{
 		std::cerr<< "couldn't write xpos" ; outStatus = false;
+	}
+	if(!writeVecToOutput(yposVarId,particlesStructure.getYposArray()))
+	{
+		std::cerr<< "couldn't write ypos" ; outStatus = false;
 	}
 	if(!writeTimeToOutput(time))
 	{
