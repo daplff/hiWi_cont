@@ -9,8 +9,8 @@
 #include "SPHysics.h"
 #include <vector>
 #include <iostream>
-#include "../../ParticlesStructure.h"
-#include "fortrangetset_prototypes.h"
+#include "Datastructures/ParticlesStructure.h"
+#include "FortranIO/fortrangetset_prototypes.h"
 
 extern "C"
 {

@@ -200,7 +200,7 @@ bool ParticleOutputter::writeToOutput(ParticlesStructure& particlesStructure, fl
 bool ParticleOutputter::writeToOutputSingleUse(int no_particles, ParticlesStructure& particlesStructure, float time) {
 
 	char fileNumberString [4];
-	sprintf(fileNumberString,"%04d",outputFileCounter);
+	sprintf(fileNumberString,"%04d",static_cast<int>(outputFileCounter));
 	std::string fileName = (baseFileName + fileNumberString) + ".nc";
 	if (fileIsOpened)
 	{

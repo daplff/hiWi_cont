@@ -1,7 +1,7 @@
 #include "SPHysics.h"
-#include "../../ParticlesStructure.h"
-#include "FortranIO.h"
-#include "ParticleOutputter.h"
+#include "Datastructures/ParticlesStructure.h"
+#include "FortranIO/FortranIO.h"
+#include "Output/ParticleOutputter.h"
 
 #define OUTPUT_FILE_NAME "OutputFileName.nc"
 
