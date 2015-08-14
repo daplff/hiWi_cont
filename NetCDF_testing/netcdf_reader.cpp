@@ -111,9 +111,13 @@ int main(int argc, char * argv[])
 	size_t timestep = 0;
 	for (timestep = 0; timestep<dimLengths[timeDimId]; ++timestep)
 	{
+
 		char timestepStringAddition [4];
 		sprintf(timestepStringAddition,"%04u",static_cast<unsigned int>(timestep));
 		std::string outputFileName = (outputFileNameBase+timestepStringAddition) + ".vtk";
+		if(dimLengths[timeDimId] == 1)
+			outputFileName = outputFileNameBase + ".vtk";
+
 		FILE* filePointer = fopen(outputFileName.c_str(), "w");
 		if( filePointer == NULL )
 		{

@@ -16,7 +16,7 @@ public:
 	void initialize(Parameters& parameters);
 	void runTimestep(ParticlesStructure& particles);
 	void simulatorOutput();
-	void netcdfOutput(ParticlesStructure& particles, float time);
+	void netcdfOutput(int no_particles, ParticlesStructure& particles, float time);
 	SPHysics();
 	~SPHysics();
 	void set_variables(ParticlesStructure& particles);

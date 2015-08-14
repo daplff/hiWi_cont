@@ -65,20 +65,24 @@ int main(int argc, char * argv [])
 	float time= 0.0;
 	while (tempXpos!=-2.0)
 	{
-		std::cout << "---------------running timestep ------------------------" << std::endl;
 
-		sphysics.runTimestep(particles);
 		std::cout<< "every 10 000th particles: \t";
 		print_vectors(particles.getXposArray(),particles.getYposArray(), 10000);
 		std::cout<< std::endl << "change xpos of first particle: (0 for unchanged, -2 for quit loop)" << std::endl << std::endl;
 		std::cin>> tempXpos;
 		C_GET_FROM_FORTRAN(time,& time);
-		sphysics.netcdfOutput(particles,time);
+		sphysics.netcdfOutput(num_particles,particles,time);
 		sphysics.simulatorOutput();
-		if(tempXpos!=0.0)
+		if(tempXpos!=0.0 && tempXpos != -2.0)
 		{
 			xPosref[0]=tempXpos;
 		}
+		std::cout << "---------------running timestep ------------------------" << std::endl;
+
+		sphysics.runTimestep(particles);
+		C_GET_FROM_FORTRAN(np,& num_particles);
+		particles.getXposArray().resize(num_particles);
+		particles.getYposArray().resize(num_particles);
 
 	}
 
