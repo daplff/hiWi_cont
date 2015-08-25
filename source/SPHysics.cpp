@@ -25,6 +25,7 @@ SPHysics::~SPHysics()
 void SPHysics::initialize(Parameters& parameters)
 {
 	fortranIO_ptr = std::make_shared<FortranIO>();
+	fortranIO_ptr->setSetXpos(true);
 
 	sph_init_();
 
@@ -36,7 +37,7 @@ void SPHysics::initialize(Parameters& parameters)
 
 void SPHysics::runTimestep(ParticlesStructure& particles)
 {
-//	set_variables(particles);
+	set_variables(particles);
 	sph_loopstep_();
 	get_variables(particles);
 }

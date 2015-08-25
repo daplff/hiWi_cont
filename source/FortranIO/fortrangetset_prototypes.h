@@ -25,6 +25,12 @@
 extern "C" {
 FORTRANGETSETARRAY(double*,yp)
 FORTRANGETSETARRAY(double*,xp)
+FORTRANGETSETARRAY(double*,vp)
+FORTRANGETSETARRAY(double*,up)
+FORTRANGETSETARRAY(double*,dw)
+FORTRANGETSETARRAY(double*,areap)
+FORTRANGETSETARRAY(double*,h_var)
+FORTRANGETSETARRAY(short*,iflag)
 
 }
 

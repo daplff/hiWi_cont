@@ -21,6 +21,7 @@ public:
 	bool getFileOpenStatus();
 	bool writeToOutput(std::vector<double> xpos, float time);
 	bool writeVecToOutput(int varId, int no_particles, size_t timestep, std::vector<double> toOutput);
+	bool writeShortVecToOutput(int varId, int no_particles, size_t timestep, std::vector<short> toOutput);
 	bool writeTimeToOutput(size_t timestep, float time);
 	bool initialise(int no_particles, std::string fileName);
 	bool initialiseSingleUse(int no_particles, std::string fileName);
@@ -31,7 +32,8 @@ private:
 	bool fileIsOpened;
 	std::string baseFileName;
 
-	int ncFileId, timeDimId,partNoDimId, xposVarId, yposVarId, timeVarId;
+	int ncFileId, timeDimId,partNoDimId, timeVarId;
+	int xposVarId, yposVarId,xvelVarId, yvelVarId, surfElevVarId, areaVarId, smoothlenVarId, flagVarId;
 	size_t outputTimestepCounter; //for multitimestep file
 	size_t outputFileCounter;	//for single timestep per file
 	void handleErrorChangeStatus(std::string message);

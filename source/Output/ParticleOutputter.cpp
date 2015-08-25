@@ -9,7 +9,7 @@
 #include <netcdf.h>
 #include <cassert>
 #include <iostream>
-#include "../../ParticlesStructure.h"
+#include "../Datastructures/ParticlesStructure.h"
 #include <stdio.h>
 
 void ParticleOutputter::handleErrorChangeStatus(std::string message)
@@ -129,6 +129,18 @@ bool ParticleOutputter::initialiseSingleUse(int no_particles, std::string inputF
 				handleErrorChangeStatus("Couldn't create xpos variable");
 	if (nc_def_var(ncFileId,"ypos",NC_FLOAT,2,dimIdsArray, &yposVarId) != NC_NOERR)
 				handleErrorChangeStatus("Couldn't create ypos variable");
+	if (nc_def_var(ncFileId,"xvel",NC_FLOAT,2,dimIdsArray, &xvelVarId) != NC_NOERR)
+				handleErrorChangeStatus("Couldn't create xvel variable");
+	if (nc_def_var(ncFileId,"yvel",NC_FLOAT,2,dimIdsArray, &yvelVarId) != NC_NOERR)
+				handleErrorChangeStatus("Couldn't create yvel variable");
+	if (nc_def_var(ncFileId,"surfElev",NC_FLOAT,2,dimIdsArray, &surfElevVarId) != NC_NOERR)
+				handleErrorChangeStatus("Couldn't create surface elevation variable");
+	if (nc_def_var(ncFileId,"area",NC_FLOAT,2,dimIdsArray, &areaVarId) != NC_NOERR)
+				handleErrorChangeStatus("Couldn't create area variable");
+	if (nc_def_var(ncFileId,"smoothlen",NC_FLOAT,2,dimIdsArray, &smoothlenVarId) != NC_NOERR)
+				handleErrorChangeStatus("Couldn't create smoothlen variable");
+	if (nc_def_var(ncFileId,"flag",NC_SHORT,2,dimIdsArray, &flagVarId) != NC_NOERR)
+				handleErrorChangeStatus("Couldn't create flag variable");
 	if (nc_def_var(ncFileId,"time",NC_FLOAT,1,&timeDimId, &timeVarId) != NC_NOERR)
 				handleErrorChangeStatus("Couldn't create time variable");
 
@@ -157,6 +169,22 @@ bool ParticleOutputter::writeVecToOutput(int varId, int no_particles, size_t tim
 
 	size_t dimensionLengths [] = {1,no_particles};
 	opStatusTemp = nc_put_vara_double(ncFileId,varId,currentStartIndices,dimensionLengths,toOutput.data());
+	if (opStatusTemp != NC_NOERR)
+	{ handleErrorOutputStatus("Couldn't write outvector",opStatusTemp); outStatus = false;}
+
+
+	return outStatus;
+}
+
+bool ParticleOutputter::writeShortVecToOutput(int varId, int no_particles, size_t timestep,
+		std::vector<short> toOutput) {
+	bool outStatus = true;
+	int opStatusTemp;
+
+	size_t currentStartIndices [] = {outputTimestepCounter, 0};
+
+	size_t dimensionLengths [] = {1,no_particles};
+	opStatusTemp = nc_put_vara_short(ncFileId,varId,currentStartIndices,dimensionLengths,toOutput.data());
 	if (opStatusTemp != NC_NOERR)
 	{ handleErrorOutputStatus("Couldn't write outvector",opStatusTemp); outStatus = false;}
 
@@ -218,6 +246,30 @@ bool ParticleOutputter::writeToOutputSingleUse(int no_particles, ParticlesStruct
 	if(!writeVecToOutput(yposVarId,no_particles, 0, particlesStructure.getYposArray()))
 	{
 		std::cerr<< "couldn't write ypos" ; outStatus = false;
+	}
+	if(!writeVecToOutput(xvelVarId,no_particles, 0, particlesStructure.getXvelArray()))
+	{
+		std::cerr<< "couldn't write xvel" ; outStatus = false;
+	}
+	if(!writeVecToOutput(yvelVarId,no_particles, 0, particlesStructure.getYvelArray()))
+	{
+		std::cerr<< "couldn't write yvel" ; outStatus = false;
+	}
+	if(!writeVecToOutput(surfElevVarId,no_particles, 0, particlesStructure.getSurfElevationArray()))
+	{
+		std::cerr<< "couldn't write surface elevation" ; outStatus = false;
+	}
+	if(!writeVecToOutput(areaVarId,no_particles, 0, particlesStructure.getAreaArray()))
+	{
+		std::cerr<< "couldn't write area" ; outStatus = false;
+	}
+	if(!writeVecToOutput(smoothlenVarId,no_particles, 0, particlesStructure.getSmoothlenArray()))
+	{
+		std::cerr<< "couldn't write smoothlen" ; outStatus = false;
+	}
+	if(!writeShortVecToOutput(flagVarId,no_particles, 0, particlesStructure.getFlagArray()))
+	{
+		std::cerr<< "couldn't write flag" ; outStatus = false;
 	}
 	if(!writeTimeToOutput(0, time))
 	{

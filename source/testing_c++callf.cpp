@@ -46,15 +46,28 @@ int main(int argc, char * argv [])
 	Parameters parameters;
 	ParticlesStructure particles;
 	SPHysics sphysics;
+
+	std::cout<<"initialising" << std::endl;
+
 	sphysics.initialize(parameters);
 
+
+	std::cout<<"initialised SPHysics, initialising vars" << std::endl;
 	std::vector<double>& xPosref = particles.getXposArray();
 	std::vector<double>& yPosref = particles.getYposArray();
 
+
+
+	std::cout<<"initialised some refs" << std::endl;
 	int num_particles;
 	C_GET_FROM_FORTRAN(np,& num_particles);
-	xPosref.resize(num_particles);
-	yPosref.resize(num_particles);
+//	xPosref.resize(num_particles);
+//	yPosref.resize(num_particles);
+	particles.resizeArrays(num_particles);
+
+
+
+	std::cout<<"initialising variables from fortran" << std::endl;
 	sphysics.get_variables(particles);
 
 //	print_vector(xPosref,500);

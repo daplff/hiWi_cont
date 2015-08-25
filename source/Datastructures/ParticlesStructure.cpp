@@ -21,6 +21,18 @@ ParticlesStructure::ParticlesStructure(const boost::property_tree::ptree& input)
 	extractArrayFromParentNode(input.get_child("yposArray"),yposArray);
 }
 
+void ParticlesStructure::resizeArrays(size_t newSize)
+{
+	xposArray.resize(newSize);
+	yposArray.resize(newSize);
+	xvelArray.resize(newSize);
+	yvelArray.resize(newSize);
+	surfElevationArray.resize(newSize);
+	areaArray.resize(newSize);
+	smoothlenArray.resize(newSize);
+	flagArray.resize(newSize);
+}
+
 ParticlesStructure::~ParticlesStructure()
 {
 }
