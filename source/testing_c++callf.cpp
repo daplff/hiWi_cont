@@ -20,14 +20,14 @@ FORTRANGETSET(float *, time)
 }
 
 
-void print_vector(std::vector<double> input, int step)
+void print_vector(std::vector<float> input, int step)
 {
 	for(int i=0;i<input.size(); i+= step)
 	{
 		std::cout<<input[i] << "\t";
 	}
 }
-void print_vectors(std::vector<double> xInput, std::vector<double> yInput, int step)
+void print_vectors(std::vector<float> xInput, std::vector<float> yInput, int step)
 {
 	for(int i=0;i<xInput.size(); i+= step)
 	{
@@ -53,8 +53,8 @@ int main(int argc, char * argv [])
 
 
 	std::cout<<"initialised SPHysics, initialising vars" << std::endl;
-	std::vector<double>& xPosref = particles.getXposArray();
-	std::vector<double>& yPosref = particles.getYposArray();
+	std::vector<float>& xPosref = particles.getXposArray();
+	std::vector<float>& yPosref = particles.getYposArray();
 
 
 
@@ -74,7 +74,7 @@ int main(int argc, char * argv [])
 	std::cout<<"starting while loop" << std::endl;
 
 
-	double tempXpos = 0.0;
+	float tempXpos = 0.0;
 	float time= 0.0;
 	while (tempXpos!=-2.0)
 	{

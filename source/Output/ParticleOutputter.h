@@ -19,8 +19,8 @@ public:
 	ParticleOutputter(std::string inputBaseFileName);
 	virtual ~ParticleOutputter();
 	bool getFileOpenStatus();
-	bool writeToOutput(std::vector<double> xpos, float time);
-	bool writeVecToOutput(int varId, int no_particles, size_t timestep, std::vector<double> toOutput);
+	bool writeToOutput(std::vector<float> xpos, float time);
+	bool writeVecToOutput(int varId, int no_particles, size_t timestep, std::vector<float> toOutput);
 	bool writeShortVecToOutput(int varId, int no_particles, size_t timestep, std::vector<short> toOutput);
 	bool writeTimeToOutput(size_t timestep, float time);
 	bool initialise(int no_particles, std::string fileName);

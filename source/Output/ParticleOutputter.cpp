@@ -48,7 +48,7 @@ bool ParticleOutputter::getFileOpenStatus() {
 	return fileIsOpened;
 }
 
-bool ParticleOutputter::writeToOutput(std::vector<double> xpos, float time) {
+bool ParticleOutputter::writeToOutput(std::vector<float> xpos, float time) {
 	bool outStatus = true;
 	int opStatusTemp;
 
@@ -59,7 +59,7 @@ bool ParticleOutputter::writeToOutput(std::vector<double> xpos, float time) {
 	size_t currentStartIndices [] = {outputTimestepCounter, 0};
 
 	size_t dimensionLengths [] = {1,xpos.size()};
-	opStatusTemp = nc_put_vara_double(ncFileId,xposVarId,currentStartIndices,dimensionLengths,xpos.data());
+	opStatusTemp = nc_put_vara_float(ncFileId,xposVarId,currentStartIndices,dimensionLengths,xpos.data());
 	if (opStatusTemp != NC_NOERR)
 	{ handleErrorOutputStatus("Couldn't write xpos",opStatusTemp); outStatus = false;}
 
@@ -161,14 +161,14 @@ void ParticleOutputter::handleOutputError(std::string message) {
 }
 
 bool ParticleOutputter::writeVecToOutput(int varId, int no_particles, size_t timestep,
-		std::vector<double> toOutput) {
+		std::vector<float> toOutput) {
 	bool outStatus = true;
 	int opStatusTemp;
 
 	size_t currentStartIndices [] = {outputTimestepCounter, 0};
 
 	size_t dimensionLengths [] = {1,no_particles};
-	opStatusTemp = nc_put_vara_double(ncFileId,varId,currentStartIndices,dimensionLengths,toOutput.data());
+	opStatusTemp = nc_put_vara_float(ncFileId,varId,currentStartIndices,dimensionLengths,toOutput.data());
 	if (opStatusTemp != NC_NOERR)
 	{ handleErrorOutputStatus("Couldn't write outvector",opStatusTemp); outStatus = false;}
 

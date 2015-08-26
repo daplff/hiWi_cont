@@ -14,7 +14,7 @@ public:
 
     void resizeArrays(size_t newSize);
 
-    std::vector<double>& getAreaArray() {
+    std::vector<float>& getAreaArray() {
 		return areaArray;
 	}
 
@@ -22,39 +22,39 @@ public:
 		return flagArray;
 	}
 
-	std::vector<double>& getSmoothlenArray() {
+	std::vector<float>& getSmoothlenArray() {
 		return smoothlenArray;
 	}
 
-	std::vector<double>& getSurfElevationArray() {
+	std::vector<float>& getSurfElevationArray() {
 		return surfElevationArray;
 	}
 
-	std::vector<double>& getXvelArray() {
+	std::vector<float>& getXvelArray() {
 		return xvelArray;
 	}
 
-	std::vector<double>& getYvelArray() {
+	std::vector<float>& getYvelArray() {
 		return yvelArray;
 	}
 
-	std::vector<double>& getXposArray()
+	std::vector<float>& getXposArray()
 	{
 	return xposArray;
 	}
-    std::vector<double>& getYposArray()
+    std::vector<float>& getYposArray()
 	{
 	return yposArray;
 	}
 
 private:
-    std::vector<double> xposArray;
-    std::vector<double> yposArray;
-    std::vector<double> xvelArray;
-    std::vector<double> yvelArray;
-    std::vector<double> surfElevationArray;
-    std::vector<double> areaArray;
-    std::vector<double> smoothlenArray;
+    std::vector<float> xposArray;
+    std::vector<float> yposArray;
+    std::vector<float> xvelArray;
+    std::vector<float> yvelArray;
+    std::vector<float> surfElevationArray;
+    std::vector<float> areaArray;
+    std::vector<float> smoothlenArray;
     std::vector<short> flagArray;
 
 };

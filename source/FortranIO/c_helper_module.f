@@ -15,7 +15,7 @@
      1  bind(c, name = "C_HELPER_MODULE_set_simvars")
         use global_2D
 
-        real (c_double), dimension(*)::xvector
+        real (c_float), dimension(*)::xvector
         integer (c_int), value::nparticles
         integer i
 
@@ -43,7 +43,7 @@
      1  bind(c, name = "C_HELPER_MODULE_get_simvars")
         use global_2D
 
-        real (c_double), dimension(*)::xvector
+        real (c_float), dimension(*)::xvector
         integer (c_int), value::nparticles
         integer i, npmax
 
@@ -78,7 +78,7 @@
      1 bind (c, name = "FORTRAN_GETTER_yp")
        use global_2d
 
-       real (c_double), dimension(*)::ctype_variable
+       real (c_float), dimension(*)::ctype_variable
        integer (c_int), value::length
        integer i
 
@@ -92,7 +92,7 @@
      1  bind (c, name = "FORTRAN_SETTER_yp")
        use global_2d
 
-       real(c_double), dimension(*)::ctype_variable
+       real(c_float), dimension(*)::ctype_variable
        integer (c_int), value::length
        integer i
 
@@ -107,7 +107,7 @@
      1   bind (c, name = "FORTRAN_GETTER_xp")
         use global_2d
 
-        real(c_double), dimension(*)::ctype_variable
+        real(c_float), dimension(*)::ctype_variable
         integer (c_int), value::length
 
         integer i
@@ -122,7 +122,7 @@
      1   bind (c, name = "FORTRAN_SETTER_xp")
         use global_2d
 
-        real(c_double), dimension(*)::ctype_variable
+        real(c_float), dimension(*)::ctype_variable
         integer (c_int), value::length
         integer i
 
@@ -177,7 +177,7 @@
      1 bind (c, name = "FORTRAN_GETTER_dw")
        use global_2d
 
-       real(c_double), dimension(*)::ctype_variable
+       real(c_float), dimension(*)::ctype_variable
        integer (c_int), value::length
        integer i
 
@@ -191,7 +191,7 @@
      1  bind (c, name = "FORTRAN_SETTER_dw")
        use global_2d
 
-       real(c_double), dimension(*)::ctype_variable
+       real(c_float), dimension(*)::ctype_variable
        integer (c_int), value::length
        integer i
 
@@ -205,7 +205,7 @@
      1 bind (c, name = "FORTRAN_GETTER_areap")
        use global_2d
 
-       real(c_double), dimension(*)::ctype_variable
+       real(c_float), dimension(*)::ctype_variable
        integer (c_int), value::length
        integer i
 
@@ -219,7 +219,7 @@
      1  bind (c, name = "FORTRAN_SETTER_areap")
        use global_2d
 
-       real(c_double), dimension(*)::ctype_variable
+       real(c_float), dimension(*)::ctype_variable
        integer (c_int), value::length
        integer i
 
@@ -233,7 +233,7 @@
      1 bind (c, name = "FORTRAN_GETTER_up")
        use global_2d
 
-       real(c_double), dimension(*)::ctype_variable
+       real(c_float), dimension(*)::ctype_variable
        integer (c_int), value::length
        integer i
 
@@ -247,7 +247,7 @@
      1  bind (c, name = "FORTRAN_SETTER_up")
        use global_2d
 
-       real(c_double), dimension(*)::ctype_variable
+       real(c_float), dimension(*)::ctype_variable
        integer (c_int), value::length
        integer i
 
@@ -261,7 +261,7 @@
      1 bind (c, name = "FORTRAN_GETTER_vp")
        use global_2d
 
-       real(c_double), dimension(*)::ctype_variable
+       real(c_float), dimension(*)::ctype_variable
        integer (c_int), value::length
        integer i
 
@@ -275,7 +275,7 @@
      1  bind (c, name = "FORTRAN_SETTER_vp")
        use global_2d
 
-       real(c_double), dimension(*)::ctype_variable
+       real(c_float), dimension(*)::ctype_variable
        integer (c_int), value::length
        integer i
 
@@ -289,7 +289,7 @@
      1 bind (c, name = "FORTRAN_GETTER_h_var")
        use global_2d
 
-       real(c_double), dimension(*)::ctype_variable
+       real(c_float), dimension(*)::ctype_variable
        integer (c_int), value::length
        integer i
 
@@ -303,7 +303,7 @@
      1  bind (c, name = "FORTRAN_SETTER_h_var")
        use global_2d
 
-       real(c_double), dimension(*)::ctype_variable
+       real(c_float), dimension(*)::ctype_variable
        integer (c_int), value::length
        integer i
 
