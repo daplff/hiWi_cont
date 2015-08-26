@@ -172,6 +172,48 @@
 
         end subroutine
 
+      subroutine get_fortran_variable_dt (ctype_variable)
+     1    bind (c, name = "FORTRAN_GETTER_dt")
+      use global_2d
+
+      real(c_float) ctype_variable
+
+         ctype_variable = dt
+
+      end subroutine
+
+      subroutine set_fortran_variable_dt (ctype_variable, length)
+     1 bind (c, name = "FORTRAN_SETTER_dt")
+      use global_2d
+
+      real(c_float) ctype_variable
+
+
+          dt = ctype_variable
+
+     end subroutine
+
+      subroutine get_fortran_variable_out (ctype_variable)
+     1    bind (c, name = "FORTRAN_GETTER_out")
+      use global_2d
+
+      real(c_float) ctype_variable
+
+         ctype_variable = out
+
+      end subroutine
+
+      subroutine set_fortran_variable_out (ctype_variable, length)
+     1 bind (c, name = "FORTRAN_SETTER_out")
+      use global_2d
+
+      real(c_float) ctype_variable
+
+
+          out = ctype_variable
+
+     end subroutine
+
         !fortranarray_getset of dw
        subroutine get_fortran_variable_dw (ctype_variable, length)
      1 bind (c, name = "FORTRAN_GETTER_dw")

@@ -15,8 +15,9 @@
 extern "C"
 {
 FORTRANGETSET(int * ,np)
-
 FORTRANGETSET(float *, time)
+FORTRANGETSET(float* ,out)
+FORTRANGETSET(float*, dt)
 }
 
 
@@ -69,13 +70,14 @@ int main(int argc, char * argv [])
 
 	std::cout<<"initialising variables from fortran" << std::endl;
 	sphysics.get_variables(particles);
+	float makeOutputEvery;
+	C_GET_FROM_FORTRAN(out,& makeOutputEvery);
 
 //	print_vector(xPosref,500);
 	std::cout<<"starting while loop" << std::endl;
 
 
-	float makeOutput = 35.1;
-	float makeOutputEvery = 35.0;
+	float makeOutput = makeOutputEvery + 0.1; //to get initial state outputted
 	float dt;
 	float tempXpos = 0.0;
 	float time= 0.0;
@@ -88,9 +90,9 @@ int main(int argc, char * argv [])
 		std::cin>> tempXpos;
 
 		//ugly thing to make output same time as in original
-		dt = -time; //temp. storage of last
+
 		C_GET_FROM_FORTRAN(time,& time);
-		dt += time; //calculate timestep based on above
+		C_GET_FROM_FORTRAN(dt, &dt);
 		if(makeOutput >= makeOutputEvery)
 		{
 			sphysics.netcdfOutput(num_particles,particles,time);
