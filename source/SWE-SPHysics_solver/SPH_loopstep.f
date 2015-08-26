@@ -63,7 +63,6 @@ c              open(26,file=name4,status='replace')
 c    
 c              call poute(22)
 c              call poute_grid(24)
-c              call dosomethingwithfortran(xp,sumth) !EDITED
 c              close(23)
 c              close(24)
 c              close(25)

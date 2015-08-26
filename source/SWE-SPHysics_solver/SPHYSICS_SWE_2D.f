@@ -33,7 +33,6 @@ c Modifications by Erik Wannerberg.
        
       character supp*4,name*40, name2*40, name3*40, name4*40
       
-      integer sumth !EDITED
       integer i
       real dummy
               
@@ -68,10 +67,8 @@ c      grz=-g
       grav=9.81     
       pi=4.*atan(1.)
       dm=2 !number of dimension (1 in 1d 2 in 2d)
-      sumth=500 !EDITED
       call getdata
       
-      !call dosomethingwithfortran(xp,np) !EDITED
 	
       open(18,file='matlabin')
 
@@ -108,7 +105,6 @@ c     + ,i, 'check the initial condition in the SPHYSICS_SWE_gen'
          
       enddo
        
-      !call dosomethingwithfortran(xp,np) !EDITED
       call check_limits	
       call ini_divide(2) !zeroing nc and allocate ibox
       call divide(1,np,2) 
@@ -181,7 +177,6 @@ c
     
               call poute(22)
               call poute_grid(24)
-              call dosomethingwithfortran(xp,sumth) !EDITED
               close(23)
               close(24)
               close(25)
@@ -208,7 +203,6 @@ c
        enddo
                                   
        write(*,*) 'End '
-       call dosomethingwithfortran(xp,np) !EDITED
        CALL CPU_TIME ( time_end )
        write(*,*)'time_begin',time_begin,'seconds'
        write(*,*)'time_end',time_end,'seconds'
