@@ -83,6 +83,7 @@ c
          endif
          itime = itime+1
          time = time + dt 
+         grab_P=grab_P+dt
          
       end subroutine
 

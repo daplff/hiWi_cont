@@ -74,6 +74,9 @@ int main(int argc, char * argv [])
 	std::cout<<"starting while loop" << std::endl;
 
 
+	float makeOutput = 35.1;
+	float makeOutputEvery = 35.0;
+	float dt;
 	float tempXpos = 0.0;
 	float time= 0.0;
 	while (tempXpos!=-2.0)
@@ -83,8 +86,17 @@ int main(int argc, char * argv [])
 		print_vectors(particles.getXposArray(),particles.getYposArray(), 10000);
 		std::cout<< std::endl << "change xpos of first particle: (0 for unchanged, -2 for quit loop)" << std::endl << std::endl;
 		std::cin>> tempXpos;
+
+		//ugly thing to make output same time as in original
+		dt = -time; //temp. storage of last
 		C_GET_FROM_FORTRAN(time,& time);
-		sphysics.netcdfOutput(num_particles,particles,time);
+		dt += time; //calculate timestep based on above
+		if(makeOutput >= makeOutputEvery)
+		{
+			sphysics.netcdfOutput(num_particles,particles,time);
+			makeOutput = 0.0;
+		}
+		makeOutput+=dt;
 		sphysics.simulatorOutput();
 		if(tempXpos!=0.0 && tempXpos != -2.0)
 		{
@@ -93,9 +105,14 @@ int main(int argc, char * argv [])
 		std::cout << "---------------running timestep ------------------------" << std::endl;
 
 		sphysics.runTimestep(particles);
-		C_GET_FROM_FORTRAN(np,& num_particles);
-		particles.getXposArray().resize(num_particles);
-		particles.getYposArray().resize(num_particles);
+		int num_particlesTemp;
+		C_GET_FROM_FORTRAN(np,& num_particlesTemp);
+		if(num_particlesTemp != num_particles)
+		{
+			num_particles = num_particlesTemp;
+			particles.resizeArrays(num_particles);
+		}
+
 
 	}
 

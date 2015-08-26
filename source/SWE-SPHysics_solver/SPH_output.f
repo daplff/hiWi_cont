@@ -36,16 +36,14 @@
 
        endif
 
-           grab_P=0.
+           !grab_P=grab_P - out
+           grab_P = 0.
 
          endif
 
          if(itime.eq.itime*10/10)then
            write(*,*) 'time, dt hmax ',time,dt, hmax, '  ok'
          endif
-         itime = itime+1
-         time = time + dt
-         grab_P=grab_P+dt
 
 
 

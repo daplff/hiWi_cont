@@ -25,11 +25,12 @@ SPHysics::~SPHysics()
 void SPHysics::initialize(Parameters& parameters)
 {
 	fortranIO_ptr = std::make_shared<FortranIO>();
-	fortranIO_ptr->setSetXpos(true);
+	//fortranIO_ptr->setSetXpos(true);
 
 	sph_init_();
 
 	particleOutputter_ptr = std::make_shared<ParticleOutputter>();
+	//below now done in each timestep with new file
 //	particleOutputter_ptr->initialise(15/*currently irrelevant number*/, OUTPUT_FILE_NAME);
 
 
