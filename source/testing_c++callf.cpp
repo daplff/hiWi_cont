@@ -18,6 +18,7 @@ FORTRANGETSET(int * ,np)
 FORTRANGETSET(float *, time)
 FORTRANGETSET(float* ,out)
 FORTRANGETSET(float*, dt)
+FORTRANGETSET(float*, tmax)
 }
 
 
@@ -81,13 +82,15 @@ int main(int argc, char * argv [])
 	float dt;
 	float tempXpos = 0.0;
 	float time= 0.0;
-	while (tempXpos!=-2.0)
+	float t_end;
+	C_GET_FROM_FORTRAN(tmax, & t_end);
+	while (time< t_end)
 	{
 
 		std::cout<< "every 10 000th particles: \t";
 		print_vectors(particles.getXposArray(),particles.getYposArray(), 10000);
-		std::cout<< std::endl << "change xpos of first particle: (0 for unchanged, -2 for quit loop)" << std::endl << std::endl;
-		std::cin>> tempXpos;
+//		std::cout<< std::endl << "change xpos of first particle: (0 for unchanged, -2 for quit loop)" << std::endl << std::endl;
+//		std::cin>> tempXpos;
 
 		//ugly thing to make output same time as in original
 
@@ -100,10 +103,10 @@ int main(int argc, char * argv [])
 		}
 		makeOutput+=dt;
 		sphysics.simulatorOutput();
-		if(tempXpos!=0.0 && tempXpos != -2.0)
-		{
-			xPosref[0]=tempXpos;
-		}
+//		if(tempXpos!=0.0 && tempXpos != -2.0)
+//		{
+//			xPosref[0]=tempXpos;
+//		}
 		std::cout << "---------------running timestep ------------------------" << std::endl;
 
 		sphysics.runTimestep(particles);
