@@ -40,8 +40,13 @@ c
 	    call variable_time_step
 	    dt=dt_new
 	    !to plot result at precise timesteps
-	    if (grab_P+dt.gt.out) then
-	        dt=out-grab_p
+	    if ((grab_P+dt.gt.out)) then
+	        if((out-grab_P).gt.0.0) then
+	            dt=out-grab_p !precise timesteps
+	        else
+	            grab_P = 0 !if printing is ignored, still want to reach
+	                       !same timesteps, so need to reset counter
+	        endif
 	    endif
             if (itime.eq.0) then
                dt_old=dt
