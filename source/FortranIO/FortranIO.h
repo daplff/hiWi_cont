@@ -12,22 +12,6 @@ public:
 	void getRuntimeVariables(ParticlesStructure& particles);
 	void getRuntimeParameters();
 
-	bool isGetSurfElev() const {
-		return getSurfElev;
-	}
-
-	void setGetSurfElev(bool getSurfElev) {
-		this->getSurfElev = getSurfElev;
-	}
-
-	bool isSetSurfElev() const {
-		return setSurfElev;
-	}
-
-	void setSetSurfElev(bool setSurfElev) {
-		this->setSurfElev = setSurfElev;
-	}
-
 	void changeGetAllVars(bool input)
 	{
 		getXpos= input;
@@ -48,6 +32,23 @@ public:
 		setSmoothlen= input;
 		setFlag= input;
 	}
+	bool isGetSurfElev() const {
+		return getSurfElev;
+	}
+
+	void setGetSurfElev(bool getSurfElev) {
+		this->getSurfElev = getSurfElev;
+	}
+
+	bool isSetSurfElev() const {
+		return setSurfElev;
+	}
+
+	void setSetSurfElev(bool setSurfElev) {
+		this->setSurfElev = setSurfElev;
+	}
+
+
 
     // getters and setters
 	bool isGetXpos() const {
