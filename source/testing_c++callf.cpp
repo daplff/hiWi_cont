@@ -52,7 +52,7 @@ int main(int argc, char * argv [])
 	std::cout<<"initialising" << std::endl;
 
 	sphysics.initialize(parameters);
-
+	sphysics.changeSetAllVars(false);
 
 	std::cout<<"initialised SPHysics, initialising vars" << std::endl;
 	std::vector<float>& xPosref = particles.getXposArray();
@@ -102,7 +102,7 @@ int main(int argc, char * argv [])
 			makeOutput = 0.0;
 		}
 		makeOutput+=dt;
-		sphysics.simulatorOutput();
+//		sphysics.simulatorOutput();
 //		if(tempXpos!=0.0 && tempXpos != -2.0)
 //		{
 //			xPosref[0]=tempXpos;

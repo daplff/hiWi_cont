@@ -58,3 +58,9 @@ void SPHysics::get_variables(ParticlesStructure& particles) {
 	fortranIO_ptr->getRuntimeVariables(particles);
 }
 
+void SPHysics::changeGetAllVars(bool input){
+	fortranIO_ptr->changeGetAllVars(input);
+}
+void SPHysics::changeSetAllVars(bool input){
+	fortranIO_ptr->changeSetAllVars(input);
+}

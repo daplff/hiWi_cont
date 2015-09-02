@@ -2,7 +2,6 @@
 #define SPHYSICS_H
 
 #include <memory>
-#include <boost/property_tree/json_parser.hpp>
 
 //TODO: class Parameters!
 class Parameters;
@@ -21,7 +20,8 @@ public:
 	~SPHysics();
 	void set_variables(ParticlesStructure& particles);
 	void get_variables(ParticlesStructure& particles);
-
+	void changeGetAllVars(bool input);
+	void changeSetAllVars(bool input);
 private:
 	std::shared_ptr<FortranIO> fortranIO_ptr;
 	std::shared_ptr<ParticleOutputter> particleOutputter_ptr;
