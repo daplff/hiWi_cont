@@ -6,11 +6,13 @@
  */
 
 #include "Parameters.h"
+
+#include <cctype>
 #include <iostream>
 #include <fstream>
 #include <sstream>
 
-static const char indat_default=
+static const char indat_default []=
 "     1000.000000\n\
         2.000000\n\
         0.001000\n\
@@ -50,14 +52,30 @@ static const char indat_default=
 
 inline std::string getFirstWordOfNonemptyLine(std::istream& reader)
 	{
-
 		std::string temp("");
 		while ((temp.empty() || (temp.length() == 1 && std::isspace(temp[0]))) && reader.rdstate() != reader.eofbit)
 		{
+		//	std::cout << counter++<<": "<< temp << std::endl;
 			std::getline(reader,temp); 				//extract line
 		}
+		//std::cout<< "string: " << temp << std::endl;
 //		std::cout << temp.substr(0,temp.find(' ')).size() << std::endl;
-		return temp.substr(0,temp.find(' '));	//return first word before space
+		int start = 0;
+		while(std::isspace(temp[start]))
+		{
+		//	std::cout<< "start: " << start << std::endl;
+			start++;
+		}
+		int end = start;
+		while(!std::isspace(temp[end]) && end-start<temp.length())
+		{
+		//			std::cout<< "end: " << end << std::endl;
+					end++;
+		}
+
+		//static int counter(0);
+		//std::cout<< counter++ << ": returning " << temp.substr(start,end) << "! "<< std::endl;
+		return temp.substr(start,end);	//return first word before space
 	}
 
 Parameters::Parameters()
@@ -163,7 +181,7 @@ void Parameters::printParams() {
 	std::cout<<std::endl<< ncx_ref_in;
 	std::cout<<std::endl<< ncy_ref_in;
 	std::cout<<std::endl<<dx_grd_in;
-	std::cout<<std::endl<<dy_grd_in;
+	std::cout<<std::endl<<dy_grd_in<<std::endl;
 }
 
 

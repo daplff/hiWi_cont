@@ -1,10 +1,16 @@
+#include <iostream>
 
-#include "DataStructure/Testing/ParticlesStructureTester.h"
+#include "source/Datastructures/Parameters.h"
+
 
 int main(int argc, char **argv)
 {
-	ParticlesStructureTester tester;
-	tester.test();
+	Parameters tester;
+	std::cout<<"testing testing\n" <<std::endl;
+
+
+	tester.initialiseDefault();
+	tester.printParams();
 	
 	return 0;
 }
