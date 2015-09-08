@@ -400,8 +400,8 @@ c     + h_var(i), 1
        write(75,44) ref_p             !position of refined particles (coeff)
        write(75,44) ref_h               !smooth. length of refined particles
        write(75,44) dw_min_ref             !minimum water depth to activate refining
-       write(75,44) xmin_ref
-       write(75,44) ymin_ref
+       write(75,44) xmin_ref		!constant 0
+       write(75,44) ymin_ref		!constant 0 -set in refim param
        write(75,44) dxx_ref
        write(75,44) dyy_ref
        write(75,43) ncx_ref
