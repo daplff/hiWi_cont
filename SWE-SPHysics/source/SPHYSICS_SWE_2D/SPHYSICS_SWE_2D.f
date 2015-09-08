@@ -178,7 +178,7 @@ c
     
               call poute(22)
               call poute_grid(24)
-              call dosomethingwithfortran(xp,sumth) !EDITED
+              !call dosomethingwithfortran(xp,sumth) !EDITED
               close(23)
               close(24)
               close(25)
@@ -205,7 +205,7 @@ c
        enddo
                                   
        write(*,*) 'End '
-       call dosomethingwithfortran(xp,np) !EDITED
+       !call dosomethingwithfortran(xp,np) !EDITED
        CALL CPU_TIME ( time_end )
        write(*,*)'time_begin',time_begin,'seconds'
        write(*,*)'time_end',time_end,'seconds'
