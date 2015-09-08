@@ -1,4 +1,7 @@
 #include "SPHysics.h"
+
+#include <iostream>
+
 #include "Datastructures/ParticlesStructure.h"
 #include "FortranIO/FortranIO.h"
 #include "Output/ParticleOutputter.h"
@@ -7,6 +10,9 @@
 
 extern "C"
 {
+	void C_HELPER_MODULE_SPH_init_fortran();
+
+
 	void sph_init_();		  //  } fortran functions
 	void sph_loopstep_();  // | using the "old"/unsafe way of
 	void sph_output_();    // | calling fortran functions
@@ -26,6 +32,8 @@ void SPHysics::initialize(Parameters& parameters)
 {
 	fortranIO_ptr = std::make_shared<FortranIO>();
 	//fortranIO_ptr->setSetXpos(true);
+	fortranIO_ptr->setParameters(parameters);
+	C_HELPER_MODULE_SPH_init_fortran();
 
 	sph_init_();
 
@@ -38,8 +46,11 @@ void SPHysics::initialize(Parameters& parameters)
 
 void SPHysics::runTimestep(ParticlesStructure& particles)
 {
+	std::cout<<"setting" <<std::endl;
 	set_variables(particles);
+	std::cout<<"running" <<std::endl;
 	sph_loopstep_();
+	std::cout<<"getting" <<std::endl;
 	get_variables(particles);
 }
 void SPHysics::simulatorOutput()

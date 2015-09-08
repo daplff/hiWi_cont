@@ -1,6 +1,7 @@
 #ifndef FORTRANIO_H
 #define FORTRANIO_H
 
+class Parameters;
 class ParticlesStructure;
 
 class FortranIO
@@ -11,6 +12,7 @@ public:
 	void setRuntimeVariables(ParticlesStructure& particles);
 	void getRuntimeVariables(ParticlesStructure& particles);
 	void getRuntimeParameters();
+	void setParameters(Parameters& parameters);
 
 	void changeGetAllVars(bool input)
 	{

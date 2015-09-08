@@ -167,7 +167,7 @@ bool ParticleOutputter::writeVecToOutput(int varId, int no_particles, size_t tim
 
 	size_t currentStartIndices [] = {outputTimestepCounter, 0};
 
-	size_t dimensionLengths [] = {1,no_particles};
+	size_t dimensionLengths [] = {1,static_cast<size_t>(no_particles)};
 	opStatusTemp = nc_put_vara_float(ncFileId,varId,currentStartIndices,dimensionLengths,toOutput.data());
 	if (opStatusTemp != NC_NOERR)
 	{ handleErrorOutputStatus("Couldn't write outvector",opStatusTemp); outStatus = false;}
@@ -183,7 +183,7 @@ bool ParticleOutputter::writeShortVecToOutput(int varId, int no_particles, size_
 
 	size_t currentStartIndices [] = {outputTimestepCounter, 0};
 
-	size_t dimensionLengths [] = {1,no_particles};
+	size_t dimensionLengths [] = {1,static_cast<size_t>(no_particles)};
 	opStatusTemp = nc_put_vara_short(ncFileId,varId,currentStartIndices,dimensionLengths,toOutput.data());
 	if (opStatusTemp != NC_NOERR)
 	{ handleErrorOutputStatus("Couldn't write outvector",opStatusTemp); outStatus = false;}

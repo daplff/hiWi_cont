@@ -9,6 +9,8 @@
 #include "SPHysics.h"
 #include <vector>
 #include <iostream>
+
+#include "Datastructures/Parameters.h"
 #include "Datastructures/ParticlesStructure.h"
 #include "FortranIO/fortrangetset_prototypes.h"
 
@@ -38,7 +40,7 @@ void print_vectors(std::vector<float> xInput, std::vector<float> yInput, int ste
 }
 
 
-class Parameters{};
+
 
 
 
@@ -51,6 +53,7 @@ int main(int argc, char * argv [])
 
 	std::cout<<"initialising" << std::endl;
 
+	parameters.initialiseDefault();
 	sphysics.initialize(parameters);
 	sphysics.changeSetAllVars(false);
 

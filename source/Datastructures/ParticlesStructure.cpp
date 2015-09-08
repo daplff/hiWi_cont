@@ -15,6 +15,7 @@ ParticlesStructure::ParticlesStructure()
 {	
 	
 }
+
 ParticlesStructure::ParticlesStructure(const boost::property_tree::ptree& input)
 {
 	extractArrayFromParentNode(input.get_child("xposArray"),xposArray);

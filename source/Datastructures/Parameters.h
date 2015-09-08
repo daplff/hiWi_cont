@@ -20,6 +20,8 @@ public:
 	void initialiseFromString(const std::string& inputString);
 	void initialiseDefault();
 	void printParams();
+
+	friend class FortranIO;
 private:
 	float rho0_in;
 	float viscos_val_in;
@@ -46,6 +48,7 @@ private:
     int iMUSCL_in;
     int i_dw_iter_in;
     int i_max_iter_in;
+//--------following parameters should be set to values that makes the simulator ignore their effects---------
     float ref_p_in;
     float ref_h_in;
 	float dw_min_ref_in;

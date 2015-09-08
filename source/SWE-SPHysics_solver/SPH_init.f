@@ -64,7 +64,7 @@ c      grz=-g
       grav=9.81     
       pi=4.*atan(1.)
       dm=2 !number of dimension (1 in 1d 2 in 2d)
-      call getdata
+      !call getdata !-now done other methods
       
 	
       open(18,file='matlabin')

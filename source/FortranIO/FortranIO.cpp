@@ -2,6 +2,7 @@
 #include "../Datastructures/ParticlesStructure.h"
 #include "fortrangetset_prototypes.h"
 #include <iostream>
+#include "../Datastructures/Parameters.h"
 
 FortranIO::FortranIO():
 getXpos(true),
@@ -157,4 +158,48 @@ void FortranIO::getRuntimeVariables(ParticlesStructure& particles) {
 
 }
 
+void FortranIO::getRuntimeParameters() {
+}
 
+void FortranIO::setParameters(Parameters& parameters) {
+	parameters.printParams();
+	C_HELPER_MODULE_SPH_setparameters_fortran(&parameters.rho0_in,
+			&parameters.viscos_val_in,
+			&parameters.dw_min_fric_in,
+			&parameters.coef_in,
+			&parameters.vlx_in,
+			&parameters.vly_in,
+			&parameters.np_in,
+			&parameters.np_b_in,
+			&parameters.npv_in,
+			&parameters.i_openbc_in,
+			&parameters.distmin_in,
+			&parameters.tol_in,
+			&parameters.ivar_dt_in,
+			&parameters.dt_in,
+			&parameters.CFL_in,
+			&parameters.tmax_in,
+			&parameters.out_in,
+			&parameters.trec_ini_in,
+			&parameters.i_restartRun_in,
+			&parameters.hsm_b_max_in,
+			&parameters.n0_in,
+			&parameters.idebug_in,
+			&parameters.iMUSCL_in,
+			&parameters.i_dw_iter_in,
+			&parameters.i_max_iter_in,
+			&parameters.ref_p_in,
+			&parameters.ref_h_in,
+			&parameters.dw_min_ref_in,
+			&parameters.xmin_ref_in,
+			&parameters.ymin_ref_in,
+			&parameters.dxx_ref_in,
+			&parameters.dyy_ref_in,
+			&parameters.ncx_ref_in,
+			&parameters.ncy_ref_in,
+			&parameters.dx_grd_in,
+			&parameters.dy_grd_in);
+
+
+
+}

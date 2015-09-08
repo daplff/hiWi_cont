@@ -32,7 +32,7 @@ FORTRANGETSETARRAY(float*,areap)
 FORTRANGETSETARRAY(float*,h_var)
 FORTRANGETSETARRAY(short*,iflag)
 
-void SETPARAMETERS_FORTRAN_C(float* rho0_in,float* viscos_val_in,float* dw_min_fric_in,
+void C_HELPER_MODULE_SPH_setparameters_fortran(float* rho0_in,float* viscos_val_in,float* dw_min_fric_in,
 	     float* coef_in, float* vlx_in, float* vly_in, int * np_in, int * np_b_in, int * npv_in, int * i_openbc_in,
 	     float* distmin_in, float* tol_in, int * ivar_dt_in, float* dt_in, float* CFL_in, float* tmax_in, float* out_in,
 	     float* trec_ini_in, int * i_restartRun_in, float* hsm_b_max_in, int * n0_in, int * idebug_in,

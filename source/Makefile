@@ -1,7 +1,7 @@
 FC=gfortran
 CC=g++
-CFLAGS=-std=c++0x
-FOPTIONS= -O3
+CFLAGS=-std=c++11 -g
+FOPTIONS= -O3 -g
 srcdir=.
 idir=../execs
 bakdir=../execs.bak
@@ -12,10 +12,10 @@ dir_new_solver=SWE-SPHysics_solver
 objects_new=$(dir_new_solver)/SPH_init.o $(dir_new_solver)/SPH_loopstep.o $(dir_new_solver)/SPH_output.o $(dir_new_solver)/get_time.o $(dir_new_solver)/set_t_end.o  
 
 dir_rootcpp=.
-objects_cpp=$(dir_rootcpp)/testing_c++callf.cpp.o $(dir_rootcpp)/FortranIO/FortranIO.cpp.o $(dir_rootcpp)/SPHysics.cpp.o $(dir_rootcpp)/Datastructures/ParticlesStructure.cpp.o $(dir_rootcpp)/Output/ParticleOutputter.cpp.o
+objects_cpp=$(dir_rootcpp)/testing_c++callf.cpp.o $(dir_rootcpp)/FortranIO/FortranIO.cpp.o $(dir_rootcpp)/SPHysics.cpp.o $(dir_rootcpp)/Datastructures/ParticlesStructure.cpp.o $(dir_rootcpp)/Datastructures/Parameters.cpp.o $(dir_rootcpp)/Output/ParticleOutputter.cpp.o
 
 dir_rootfortran=.
-objects_fortran=$(dir_rootfortran)/FortranIO/c_helper_module.o
+objects_fortran=$(dir_rootfortran)/FortranIO/c_helper_module.o $(dir_rootfortran)/FortranIO/c_helper_module_from_SPH.o
 
 objects_solver=$(dir_solver)/global_2D.o   \
 	$(dir_solver)/ini_divide_2D.o   \
