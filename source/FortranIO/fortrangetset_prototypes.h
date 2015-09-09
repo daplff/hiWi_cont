@@ -31,6 +31,9 @@ FORTRANGETSETARRAY(float*,dw)
 FORTRANGETSETARRAY(float*,areap)
 FORTRANGETSETARRAY(float*,h_var)
 FORTRANGETSETARRAY(short*,iflag)
+FORTRANGETSET(int*,np)
+void C_HELPER_MODULE_add_particle(float* xp_n, float * yp_n, float * up_n, float * vp_n,
+	     float * dw_n,float * ar_n, float * h_var_n, short * iflag_n);
 
 void C_HELPER_MODULE_SPH_setparameters_fortran(float* rho0_in,float* viscos_val_in,float* dw_min_fric_in,
 	     float* coef_in, float* vlx_in, float* vly_in, int * np_in, int * np_b_in, int * npv_in, int * i_openbc_in,

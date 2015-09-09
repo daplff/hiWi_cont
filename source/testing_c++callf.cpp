@@ -21,6 +21,8 @@ FORTRANGETSET(float *, time)
 FORTRANGETSET(float* ,out)
 FORTRANGETSET(float*, dt)
 FORTRANGETSET(float*, tmax)
+void C_HELPER_MODULE_add_particle(float* xp_n, float * yp_n, float * up_n, float * vp_n,
+	     float * dw_n,float * ar_n, float * h_var_n, short * iflag_n);
 }
 
 
@@ -74,6 +76,8 @@ int main(int argc, char * argv [])
 
 	std::cout<<"initialising variables from fortran" << std::endl;
 	sphysics.get_variables(particles);
+
+//	sphysics.changeGetAllVars(false);
 	float makeOutputEvery;
 	C_GET_FROM_FORTRAN(out,& makeOutputEvery);
 
@@ -87,6 +91,17 @@ int main(int argc, char * argv [])
 	float time= 0.0;
 	float t_end;
 	C_GET_FROM_FORTRAN(tmax, & t_end);
+	t_end = 5.0;
+	C_SET_TO_FORTRAN(tmax, & t_end);
+	particles.addParticle(2,2,0,0,0.5,0.1,0.01,0);
+	float pos, vel, depth, area, smoothlen; short flag;
+	pos = 5;
+	vel = 0.2;
+	depth = 0.5;
+	area = 0.01;
+	smoothlen = 0.1;
+	flag = 0;
+	int lastHundredthSet=0;
 	while (time< t_end)
 	{
 
@@ -111,14 +126,18 @@ int main(int argc, char * argv [])
 //			xPosref[0]=tempXpos;
 //		}
 		std::cout << "---------------running timestep ------------------------" << std::endl;
-
+		if(static_cast<int>(time*10)>=lastHundredthSet)
+		{
+			C_HELPER_MODULE_add_particle(&pos,&pos,&vel,&vel,&depth,&area,&smoothlen,&flag);
+			lastHundredthSet = static_cast<int>(time*10) + 1;
+		}
 		sphysics.runTimestep(particles);
 		int num_particlesTemp;
 		C_GET_FROM_FORTRAN(np,& num_particlesTemp);
 		if(num_particlesTemp != num_particles)
 		{
 			num_particles = num_particlesTemp;
-			particles.resizeArrays(num_particles);
+//			particles.resizeArrays(num_particles);
 		}
 
 

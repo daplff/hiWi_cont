@@ -404,6 +404,50 @@
 
       end subroutine
 
+      subroutine add_particle (xp_n,yp_n,up_n,vp_n,
+     + dw_n,ar_n,h_var_n, iflag_n) !same order as output
+     + bind (c, name='C_HELPER_MODULE_add_particle')
+
+
+      use global_2D
+
+      real (c_float) xp_n,yp_n,up_n,vp_n,
+     + h_var_n,dw_n,ar_n
+      integer (c_short) iflag_n
+
+      integer i
+		np = np + 1
+		i = np
+         xp(i)=xp_n
+         yp(i)=yp_n
+         up(i)=up_n
+         vp(i)=vp_n
+         uo(i)=up_n
+         vo(i)=vp_n
+         pm(i)=dw_n * rho0 * ar_n	!mass?
+         h_var(i)=h_var_n
+         h_var0(i)=h_var_n
+         rhop(i)=rho0 * dw_n		!this is some kind of pressure?
+         dw(i)=dw_n !also calculated - depth
+         dw0(i)=dw_n				! init depth
+         alphap(i)= rho0 * dw_n * dm !IGNORE! it's calculated in ac_dw/ac_alpha
+         cs(i)=sqrt(grav*dw_n)
+         iflag(i)=1
+         pm0(i)= dw_n * rho0 * ar_n
+         ar(i)=ar_n					!this is area of particle
+
+
+
+
+
+
+
+
+         !--------------------------------
+
+         end subroutine
+
+
       end module
 
 

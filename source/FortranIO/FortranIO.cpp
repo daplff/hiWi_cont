@@ -29,56 +29,60 @@ FortranIO::~FortranIO()
 }
 
 void FortranIO::setRuntimeVariables(ParticlesStructure& particles) {
-	int len = particles.getXposArray().size();
-	if (particles.getYposArray().size() != len)
+//	if (particles.getYposArray().size() != len)
+//		{
+//			int tempYlen = particles.getYposArray().size();
+//			std::cerr<<
+//					"Warning! Xpos and Ypos vectors have different lengths! Setting editing length to min of xlen ("
+//					<< len << ") and ylen (" << tempYlen << ")!" <<std::endl;
+//			len = (len > tempYlen ? tempYlen : len);
+//		}
+	if(setXpos || setYpos || setXvel || setYvel || setArea || setSmoothlen || setSurfElev || setFlag)
+	{
+		int len = particles.getNumberOfElts();
+		if(setXpos)
 		{
-			int tempYlen = particles.getYposArray().size();
-			std::cerr<<
-					"Warning! Xpos and Ypos vectors have different lengths! Setting editing length to min of xlen ("
-					<< len << ") and ylen (" << tempYlen << ")!" <<std::endl;
-			len = (len > tempYlen ? tempYlen : len);
+			float * xpos_ptr = (particles.getXposArray()).data();
+			C_SETARRAY_TO_FORTRAN(xp,xpos_ptr, len) ;
 		}
-	if(setXpos)
-	{
-		float * xpos_ptr = (particles.getXposArray()).data();
-		C_SETARRAY_TO_FORTRAN(xp,xpos_ptr, len) ;
-	}
-	if(setYpos)
-	{
-		float * ypos_ptr = (particles.getYposArray()).data();
-		C_SETARRAY_TO_FORTRAN(yp,ypos_ptr, len) ;
-	}
-	if(setXvel)
-	{
-		float * xvel_ptr = (particles.getXvelArray()).data();
-		C_SETARRAY_TO_FORTRAN(up,xvel_ptr, len) ;
-	}
-	if(setYvel)
-	{
-		float * yvel_ptr = (particles.getYvelArray()).data();
-		C_SETARRAY_TO_FORTRAN(vp,yvel_ptr, len) ;
-	}
-	if(setSurfElev)
-	{
-		float * surfelev_ptr = (particles.getSurfElevationArray()).data();
-		C_SETARRAY_TO_FORTRAN(dw,surfelev_ptr, len) ;
-	}
-	if(setArea)
-	{
-		float * area_ptr = (particles.getAreaArray()).data();
-		C_SETARRAY_TO_FORTRAN(areap,area_ptr, len) ;
-	}
-	if(setSmoothlen)
-	{
-		float * smoothlen_ptr = (particles.getSmoothlenArray()).data();
-		C_SETARRAY_TO_FORTRAN(h_var, smoothlen_ptr, len) ;
-	}
-	if(setFlag)
-	{
-		short * iflag_ptr = (particles.getFlagArray()).data();
-		C_SETARRAY_TO_FORTRAN(iflag,iflag_ptr, len) ;
-	}
+		if(setYpos)
+		{
+			float * ypos_ptr = (particles.getYposArray()).data();
+			C_SETARRAY_TO_FORTRAN(yp,ypos_ptr, len) ;
+		}
+		if(setXvel)
+		{
+			float * xvel_ptr = (particles.getXvelArray()).data();
+			C_SETARRAY_TO_FORTRAN(up,xvel_ptr, len) ;
+		}
+		if(setYvel)
+		{
+			float * yvel_ptr = (particles.getYvelArray()).data();
+			C_SETARRAY_TO_FORTRAN(vp,yvel_ptr, len) ;
+		}
+		if(setSurfElev)
+		{
+			float * surfelev_ptr = (particles.getSurfElevationArray()).data();
+			C_SETARRAY_TO_FORTRAN(dw,surfelev_ptr, len) ;
+		}
+		if(setArea)
+		{
+			float * area_ptr = (particles.getAreaArray()).data();
+			C_SETARRAY_TO_FORTRAN(areap,area_ptr, len) ;
+		}
+		if(setSmoothlen)
+		{
+			float * smoothlen_ptr = (particles.getSmoothlenArray()).data();
+			C_SETARRAY_TO_FORTRAN(h_var, smoothlen_ptr, len) ;
+		}
+		if(setFlag)
+		{
+			short * iflag_ptr = (particles.getFlagArray()).data();
+			C_SETARRAY_TO_FORTRAN(iflag,iflag_ptr, len) ;
+		}
 
+		C_SET_TO_FORTRAN(np, &len);
+	}
 
 
 
