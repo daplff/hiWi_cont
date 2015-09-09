@@ -46,7 +46,7 @@ void C_HELPER_MODULE_SPH_setparameters_fortran(float* rho0_in,float* viscos_val_
 		GETTERNAME(fortranvar) (varname)
 
 #define C_SET_TO_FORTRAN(fortranvar,varname)\
-		GETTERNAME(fortranvar) (varname)
+		SETTERNAME(fortranvar) (varname)
 
 #define C_GETARRAY_FROM_FORTRAN(fortranvar,varname,length) \
 		GETTERNAME(fortranvar)(varname,length)

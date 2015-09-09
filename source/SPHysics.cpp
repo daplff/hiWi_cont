@@ -11,6 +11,8 @@
 extern "C"
 {
 	void C_HELPER_MODULE_SPH_init_fortran();
+	void C_HELPER_MODULE_SPH_loopstep1();	//actual timestepping
+	void C_HELPER_MODULE_SPH_loopstep2();	//setting up variables
 
 
 	void sph_init_();		  //  } fortran functions
@@ -41,7 +43,7 @@ void SPHysics::initialize(Parameters& parameters)
 	//below now done in each timestep with new file
 //	particleOutputter_ptr->initialise(15/*currently irrelevant number*/, OUTPUT_FILE_NAME);
 
-
+	C_HELPER_MODULE_SPH_loopstep1();
 }
 
 void SPHysics::runTimestep(ParticlesStructure& particles)
@@ -49,6 +51,8 @@ void SPHysics::runTimestep(ParticlesStructure& particles)
 	std::cout<<"setting" <<std::endl;
 	set_variables(particles);
 	std::cout<<"running" <<std::endl;
+	C_HELPER_MODULE_SPH_loopstep2();
+	C_HELPER_MODULE_SPH_loopstep1();
 	sph_loopstep_();
 	std::cout<<"getting" <<std::endl;
 	get_variables(particles);

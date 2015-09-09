@@ -20,6 +20,7 @@ public:
 		getYpos= input;
 		getXvel= input;
 		getYvel= input;
+		getSurfElev = input;
 		getArea= input;
 		getSmoothlen= input;
 		getFlag= input;
@@ -30,6 +31,7 @@ public:
 		setYpos= input;
 		setXvel= input;
 		setYvel= input;
+		setSurfElev = input;
 		setArea= input;
 		setSmoothlen= input;
 		setFlag= input;

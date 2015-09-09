@@ -104,65 +104,70 @@ void FortranIO::getRuntimeVariables(ParticlesStructure& particles) {
 //
 //	C_GETARRAY_FROM_FORTRAN(xp, xpos_ptr, len);
 //	C_GETARRAY_FROM_FORTRAN(yp, ypos_ptr, len);
+	if(getXpos || getYpos || getXvel || getYvel || getArea || getSmoothlen || getSurfElev || getFlag)
+	{
+		int len;
+		C_GET_FROM_FORTRAN(np, &len);
 
-	int len = particles.getXposArray().size();
-	if (particles.getYposArray().size() != len)
+		particles.resizeArrays(len);
+
+		//	if (particles.getYposArray().size() != len)
+		//		{
+		//			int tempYlen = particles.getYposArray().size();
+		//			std::cerr<<
+		//					"Warning! Xpos and Ypos vectors have different lengths! Setting editing length to min of xlen ("
+		//					<< len << ") and ylen (" << tempYlen << ")!" <<std::endl;
+		//			len = (len > tempYlen ? tempYlen : len);
+		//		}
+
+		if(getXpos)
 		{
-			int tempYlen = particles.getYposArray().size();
-			std::cerr<<
-					"Warning! Xpos and Ypos vectors have different lengths! Setting editing length to min of xlen ("
-					<< len << ") and ylen (" << tempYlen << ")!" <<std::endl;
-			len = (len > tempYlen ? tempYlen : len);
+			float * xpos_ptr = (particles.getXposArray()).data();
+			C_GETARRAY_FROM_FORTRAN(xp,xpos_ptr, len) ;
 		}
-
-	if(getXpos)
-	{
-		float * xpos_ptr = (particles.getXposArray()).data();
-		C_GETARRAY_FROM_FORTRAN(xp,xpos_ptr, len) ;
+		if(getYpos)
+		{
+			float * ypos_ptr = (particles.getYposArray()).data();
+			C_GETARRAY_FROM_FORTRAN(yp,ypos_ptr, len) ;
+		}
+		if(getXvel)
+		{
+			float * xvel_ptr = (particles.getXvelArray()).data();
+			C_GETARRAY_FROM_FORTRAN(up,xvel_ptr, len) ;
+		}
+		if(getYvel)
+		{
+			float * yvel_ptr = (particles.getYvelArray()).data();
+			C_GETARRAY_FROM_FORTRAN(vp,yvel_ptr, len) ;
+		}
+		if(getSurfElev)
+		{
+			float * surfelev_ptr = (particles.getSurfElevationArray()).data();
+			C_GETARRAY_FROM_FORTRAN(dw,surfelev_ptr, len) ;
+		}
+		if(getArea)
+		{
+			float * area_ptr = (particles.getAreaArray()).data();
+			C_GETARRAY_FROM_FORTRAN(areap,area_ptr, len) ;
+		}
+		if(getSmoothlen)
+		{
+			float * smoothlen_ptr = (particles.getSmoothlenArray()).data();
+			C_GETARRAY_FROM_FORTRAN(h_var, smoothlen_ptr, len) ;
+		}
+		if(getFlag)
+		{
+			short * iflag_ptr = (particles.getFlagArray()).data();
+			C_GETARRAY_FROM_FORTRAN(iflag,iflag_ptr, len) ;
+		}
 	}
-	if(getYpos)
-	{
-		float * ypos_ptr = (particles.getYposArray()).data();
-		C_GETARRAY_FROM_FORTRAN(yp,ypos_ptr, len) ;
-	}
-	if(getXvel)
-	{
-		float * xvel_ptr = (particles.getXvelArray()).data();
-		C_GETARRAY_FROM_FORTRAN(up,xvel_ptr, len) ;
-	}
-	if(getYvel)
-	{
-		float * yvel_ptr = (particles.getYvelArray()).data();
-		C_GETARRAY_FROM_FORTRAN(vp,yvel_ptr, len) ;
-	}
-	if(getSurfElev)
-	{
-		float * surfelev_ptr = (particles.getSurfElevationArray()).data();
-		C_GETARRAY_FROM_FORTRAN(dw,surfelev_ptr, len) ;
-	}
-	if(getArea)
-	{
-		float * area_ptr = (particles.getAreaArray()).data();
-		C_GETARRAY_FROM_FORTRAN(areap,area_ptr, len) ;
-	}
-	if(getSmoothlen)
-	{
-		float * smoothlen_ptr = (particles.getSmoothlenArray()).data();
-		C_GETARRAY_FROM_FORTRAN(h_var, smoothlen_ptr, len) ;
-	}
-	if(getFlag)
-	{
-		short * iflag_ptr = (particles.getFlagArray()).data();
-		C_GETARRAY_FROM_FORTRAN(iflag,iflag_ptr, len) ;
-	}
-
 }
 
 void FortranIO::getRuntimeParameters() {
 }
 
 void FortranIO::setParameters(Parameters& parameters) {
-	parameters.printParams();
+	//parameters.printParams();
 	C_HELPER_MODULE_SPH_setparameters_fortran(&parameters.rho0_in,
 			&parameters.viscos_val_in,
 			&parameters.dw_min_fric_in,

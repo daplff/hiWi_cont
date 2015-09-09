@@ -41,7 +41,7 @@ c
               
          	         
          !-- Call Main Subroutines --  
-         call step
+         !call step
                    
          !-- File Output Routines --
 c         if(grab_P.ge.out) then 
