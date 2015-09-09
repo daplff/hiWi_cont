@@ -37,7 +37,7 @@ c
       !RV: variable smoothing length
 
        do k=n_start,n_end
-         if (iflag(k).ne.0) then
+         if (iflag(k).eq.1) then
          	
            dxx = xp(k) - xmin          
            dyy = yp(k) - ymin

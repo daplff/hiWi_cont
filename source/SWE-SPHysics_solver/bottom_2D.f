@@ -75,7 +75,7 @@ c        -- calculating position of particle i --
                       
              !shepard correction
              if (sum_h_t(i) .gt.0.) then
-                 h_t(i)=h_t(i)/sum_h_t(i)
+                 h_t(i)=h_t(i)/sum_h_t(i)	!h_t(i) is the bottom elevation at particle i
              else
                iflag(i)=0
                write(*,*) 'particle xp,yp out of domain (', 

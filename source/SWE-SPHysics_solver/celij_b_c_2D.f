@@ -48,7 +48,7 @@ c            Calculating kernel & Normalized Kernel
 	     
 	     rad=sqrt(rr2)
 	     call kernel(alphad,const_ker,drx,dry,rad,hsm_b(j),
-     +       frx,fry,fac,Wab)    
+     +       frx,fry,fac,Wab)    !frx, fry are set to the kernel function's gradient times radial unit vector
 
              sum_b_f(i,1)=sum_b_f(i,1)-frx*drx*Vol_b(j)
              sum_b_f(i,2)=sum_b_f(i,2)-frx*dry*Vol_b(j)

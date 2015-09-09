@@ -96,6 +96,7 @@ c              write(*,*) i,xp(i), up(i), iflag(i)
          cs(i)=cs_n(i)
          iflag(i)=iflag_n(i)
          pm0(i)=pm0_n(i)
+         ar(i)=ar_n(i)
             
       enddo
 
